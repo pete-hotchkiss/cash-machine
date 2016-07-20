@@ -30,6 +30,7 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
     $scope.displayvalue = 0;
     $scope.amount = 0;
     $scope.message = {};
+    $scope.transationtoshow = 0;
 
     $scope.reset = function() {
       $scope.displayvalue = $scope.formatAsCurrency( 0 );
@@ -41,6 +42,10 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
       $scope.amount = ($scope.amount === 0 ) ? a : $scope.amount.toString() + a;
       $scope.displayvalue = $scope.formatAsCurrency( $scope.amount );
     };
+
+    $scope.showHistoricalTransaction = function(i) {
+      $scope.transationtoshow = i + 1;
+    }
 
     /**
     ng-submit wrapper to the withdraw function

@@ -14,21 +14,24 @@ div.application__canvas
   div.ui__container--right
     div(ng-model="message" class="ui__message-field--{{ message.type | lowercase}}" ng-hide="message.type == undefined").ui__message-field 
       h2 {{message.message}}
-    div(ng-model="transactions" ng-show="transactions.length > 0").ui__message-field.ui__message-field--mid-grey 
+    div(ng-model="transactions[transationtoshow]" ng-show="transactions.length > 0").ui__message-field.ui__message-field--mid-grey 
       h3 Transaction Details:
       div.ui__transaction__summary
         div
-          p #[strong TimeStamp:] {{ transactions[0].timestamp | date:'yyyy-MM-dd HH:mm:ss' }} · #[strong Amount:] {{ transactions[0].amount }} · #[strong Balance:] {{ transactions[0].balance }}
+          p #[strong TimeStamp:] {{ transactions[transationtoshow].timestamp | date:'yyyy-MM-dd HH:mm:ss' }} · #[strong Amount:] {{ transactions[transationtoshow].amount }} · #[strong Balance:] {{ transactions[transationtoshow].balance }}
+          //- p #[strong TimeStamp:] {{ transactions[0].timestamp | date:'yyyy-MM-dd HH:mm:ss' }} · #[strong Amount:] {{ transactions[0].amount }} · #[strong Balance:] {{ transactions[0].balance }}
         div.ui__transaction__detail
-          div(ng-repeat="t in transactions[0].withdrawldetail" class="ui__transaction__detail--item--{{ t.key}}").ui__transaction__detail--item 
+          div(ng-repeat="t in transactions[transationtoshow].withdrawldetail" class="ui__transaction__detail--item--{{ t.key}}").ui__transaction__detail--item 
             p {{t.count}}
       p #[strong Withdrawl: ] {{ transactions[0].breakdown.notes }} Notes ( {{ formatAsCurrency(transactions[0].breakdown.notetotal) }} ) and {{ transactions[0].breakdown.coins }} Coins ( {{ formatAsCurrency(transactions[0].breakdown.cointotal) }} )
-    div(ng-model="transactions" ng-show="transactions.length > 1").ui__message-field.ui__message-field--light-grey 
+    div(ng-model="transactions" ng-show="transactions.length > 1").ui__message-field.ui__message-field--light-grey
+      h4(ng-hide="transationtoshow == 0" ng-click="showHistoricalTransaction(-1)").ui__message__heading--right View Latest 
       h3 Previous Transactions:
-        div(ng-repeat="i in transactions | limitTo: (1 - transactions.length)").ui__transaction__summary--other-items
-          p #[strong TimeStamp:] {{ i.timestamp | date:'yyyy-MM-dd HH:mm:ss' }}
-          p #[strong Amount:] {{ i.amount }}
-          p #[strong Balance:] {{ i.balance }}
+      div(ng-repeat="i in transactions | limitTo: (1 - transactions.length)" ng-class="{ 'ui__transaction__summary--other-items--current': transationtoshow == $index + 1 }").ui__transaction__summary--other-items
+        p #[strong TimeStamp:] {{ i.timestamp | date:'yyyy-MM-dd HH:mm:ss' }}
+        p #[strong Amount:] {{ i.amount }}
+        p #[strong Balance:] {{ i.balance }}
+        p(ng-click="showHistoricalTransaction($index)").ui__transaction--icon
     
   
 h2 Current Float Balance: #[span(ng-hide="currentbalance < 0") {{ balance() }} ]
