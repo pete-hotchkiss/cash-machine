@@ -22,25 +22,24 @@ angular.module('cashPointApp', [])
       $scope.displayvalue = $scope.formatAsCurrency( 0 );
       $scope.amount = 0;
       $scope.message = {};
-    }
+    };
 
     $scope.buildvalue = function( a ) {
-      $scope.amount = ($scope.amount == 0 ) ? a : $scope.amount.toString() + a ;
+      $scope.amount = ($scope.amount === 0 ) ? a : $scope.amount.toString() + a;
       $scope.displayvalue = $scope.formatAsCurrency( $scope.amount );
-    }
+    };
 
     /**
     ng-submit wrapper to the withdraw function
     */
-    $scope.submit = function(e) {
+    $scope.submit = function() {
       try {
         $scope.withdraw( $scope.amount );
       } catch ( e ) {
         // if it doesn't work then deal with it
         $scope.message = { type: 'warning', message: e.message };
       }
-
-    }
+    };
 
     /**
     Change the format of the withdrawl type - swaps between smallest number of denominations or weighting to a particualr denomination
@@ -119,7 +118,7 @@ angular.module('cashPointApp', [])
         $scope.updateFloat( wd );
 
         /// ...and return a cash data object with the details we need
-        var t = { timestamp: Date.now(), amount:$scope.formatAsCurrency(a), balance: $scope.formatAsCurrency($scope.currentbalance), totalcount: wd.length, withdrawldetail: $scope.getRequestedWithdrawlCounts( wd ),
+        var t = { timestamp: Date.now(), amount: $scope.formatAsCurrency(a), balance: $scope.formatAsCurrency($scope.currentbalance), totalcount: wd.length, withdrawldetail: $scope.getRequestedWithdrawlCounts( wd ),
         breakdown: cn, simple: wd }; // singleOrDefault
 
 
@@ -216,11 +215,11 @@ angular.module('cashPointApp', [])
       return jslinq(a).where( function(e) { return e.key === t; })
               .select( function(e) {
                 return jslinq(e.elements)
-              .sum( function(e) {
-                return e.value;
+              .sum( function(f) {
+                return f.value;
               });
             }).singleOrDefault();
-    }
+    };
 
     /**
     update the float reducing denomination counts according to passed withdrawl structure
@@ -243,11 +242,11 @@ angular.module('cashPointApp', [])
     $scope.updateblance = function() {
       $scope.currentbalance = jslinq($scope.float)
           .sum( function(el){ return el.amount * el.denomination; });
-    }
+    };
 
     $scope.testfunction = function( a ) {
       return 100 * a;
-    }
+    };
 
     /**
     Return a passed value in single units into decimal format - i.e. 100 units = £1
@@ -262,9 +261,9 @@ angular.module('cashPointApp', [])
     */
     $scope.getPriorityIndex = function( d ) {
       // loops through the float, finding the position of the denomination that should be given priority
-      var ind = $scope.getAviailableDenominations(false).indexOf(d)
+      var ind = $scope.getAviailableDenominations(false).indexOf(d);
       // as long as there is stock of the priority denomination keep using it
-      return ( $scope.float[ind].amount > 1 ) ? ind : $scope.float.length - 1 ;
+      return ( $scope.float[ind].amount > 1 ) ? ind : $scope.float.length - 1;
     };
 
 });
