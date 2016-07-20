@@ -5,7 +5,7 @@
 
 ## Installing
 ### Get the code
-First up, clone this git report to your local environment
+First up, clone this git repo to your local environment
 ```
 git clone https://github.com/pete-hotchkiss/cash-machine
 ```
