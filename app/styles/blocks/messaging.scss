@@ -6,9 +6,11 @@
     }
     // max-width: 307px
   }
+
   color: #eee;
   font-family: 'Fira Mono';
   text-shadow: -1px 1px 1px rgba(255,255,255,.5), 0 0 0 #000, 1px 1px 1px rgba(255,255,255,.5);
+  position: relative;
   // width: 100%;
 
   @include min-screen($screens-bigger-than-iphone) {
@@ -19,7 +21,7 @@
   opacity: 0;
   transition: opacity .45s ease-in-out;
 
-  & h2, & h3 {
+  & h2, & h3, & h4 {
     @include rem(font-size, 20px);
     margin: 0;
   }
@@ -89,6 +91,28 @@
     &--current {
       // border: 1px solid red;
       background-color: rgba(128,128,128, .15);
+    }
+  }
+}
+
+.ui__message__heading {
+  &--right {
+    color: rgba(56,56,56,.3);
+    position: absolute;
+    right: 16px;
+    // padding-right: 27px
+    padding-right: 25px;
+    cursor: pointer;
+    &:after {
+      @include rem(font-size, 22px !important);
+      font-family: 'icomoon';
+      display: block;
+      margin-top: -30px !important;
+      cursor: pointer;
+      content: '\e9ce';
+      width: 22px;
+      position: absolute;
+      right: 0;
     }
   }
 }
