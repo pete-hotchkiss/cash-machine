@@ -12,9 +12,9 @@ div.application__canvas
       button(ng-click="reset()").ui__button.ui__button--red Reset
       button(ng-click="depositFunds()" ng-show="currentbalance == 0").ui__button.ui__button--green Deposit Funds 
   div.ui__container--right
-    div(ng-model="message" class="ui__message-field--{{ message.type | lowercase}}" ng-hide="message.type == undefined").ui__message-field 
+    div(ng-model="message" class="ui__message-field--{{ message.type | lowercase}}"  ng-class="{ 'visible': message.type, 'hidden': !message.type }").ui__message-field 
       h2 {{message.message}}
-    div(ng-model="transactions[transationtoshow]" ng-show="transactions.length > 0").ui__message-field.ui__message-field--mid-grey 
+    div(ng-model="transactions[transationtoshow]" ng-class="{ 'visible': transactions.length > 0, 'hidden': transactions.length == 0 }").ui__message-field.ui__message-field--mid-grey 
       h3 Transaction Details:
       div.ui__transaction__summary
         div
@@ -24,7 +24,7 @@ div.application__canvas
           div(ng-repeat="t in transactions[transationtoshow].withdrawldetail" class="ui__transaction__detail--item--{{ t.key}}").ui__transaction__detail--item 
             p {{t.count}}
       p #[strong Withdrawl: ] {{ transactions[0].breakdown.notes }} Notes ( {{ formatAsCurrency(transactions[0].breakdown.notetotal) }} ) and {{ transactions[0].breakdown.coins }} Coins ( {{ formatAsCurrency(transactions[0].breakdown.cointotal) }} )
-    div(ng-model="transactions" ng-show="transactions.length > 1").ui__message-field.ui__message-field--light-grey
+    div(ng-model="transactions" ng-class="{ 'visible': transactions.length > 1, 'hidden': transactions.length < 2 }").ui__message-field.ui__message-field--light-grey
       h4(ng-hide="transationtoshow == 0" ng-click="showHistoricalTransaction(-1)").ui__message__heading--right View Latest 
       h3 Previous Transactions:
       div(ng-repeat="i in transactions | limitTo: (1 - transactions.length)" ng-class="{ 'ui__transaction__summary--other-items--current': transationtoshow == $index + 1 }").ui__transaction__summary--other-items
