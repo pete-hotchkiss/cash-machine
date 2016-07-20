@@ -106,6 +106,8 @@ angular.module('cashPointApp', [])
 
       if( !$scope.checkAvailableBalance( a ) ) {
         throw ( new Error('Sorry - Insuficent funds') );
+      } else if ( a < 1 ) {
+        throw ( new Error('Sorry - you need to request an ammount of at least £0.01'));
       } else {
         // there's enough money avilable so get a withdrawl
         var wd = $scope.getRequestedWithdrawl(a);
