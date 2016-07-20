@@ -263,4 +263,15 @@ angular.module('cashPointApp', [])
       return ( $scope.float[ind].amount > 1 ) ? ind : $scope.float.length - 1;
     };
 
+    /**
+    Loads the float json object again to depost new funds
+    */
+    $scope.depostFunds = function() {
+      $http.get('/data/float.json').then( function(result) {
+          $scope.float = result.data.float;
+          $scope.updateblance();
+          return $scope.float;
+      });
+    }
+
 });
