@@ -9,8 +9,8 @@ angular.module('cashPointApp', [])
         $scope.updateblance();
     });
     $scope.locale = 'en-gb';
-    $scope.withdrawlpriortiy = 'leastss';
-    // $scope.withdrawlpriortiy = leastss;
+    $scope.withdrawlpriortiy = 'least';
+    // $scope.withdrawlpriortiy = least;
     $scope.prioritydenomination = 2000;
     $scope.currentbalance = 0;
     $scope.transactions = []; // to hold transactional history
