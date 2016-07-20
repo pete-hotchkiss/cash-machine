@@ -123,3 +123,14 @@
     background-color: #ff5770;
   }
 }
+
+.ui__transaction--icon {
+  @include rem(font-size, 22px !important);
+  font-family: 'icomoon';
+  display: block;
+  margin-top: -4px !important;
+  cursor: pointer;
+  &:before {
+    content: '\e9ce';
+  }
+}
