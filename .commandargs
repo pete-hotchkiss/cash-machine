@@ -11,5 +11,14 @@
 	        	"describe": "Define the writhdrawl algorithm which should be used by the application, will expect only the values 'least' or 'denomination'",
 						"choices": ["denomination", "least"]
 	    	}
-	    }
+	    },
+	"denomination":
+		{
+			"d": {
+				"alias": ["D", "value"],
+				"default": 2000,
+				"describe": "Set which denomination of currency you'd like to give priority too. This is only required if using the -w withdrawl flag.",
+				"choices": [1,2,5,10,20,50,100,500,1000,2000,5000]
+			}
+		}
 }

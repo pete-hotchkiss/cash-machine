@@ -11,7 +11,7 @@ angular.module('cashPointApp', [])
     $scope.locale = 'en-gb';
     $scope.withdrawlpriortiy = '##buildtype##';
     // $scope.withdrawlpriortiy = ##buildtype##;
-    $scope.prioritydenomination = 2000;
+    $scope.prioritydenomination = Number('##priority-value##');
     $scope.currentbalance = 0;
     $scope.transactions = []; // to hold transactional history
     $scope.displayvalue = 0;

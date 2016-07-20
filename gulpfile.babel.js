@@ -51,11 +51,19 @@ var argz = require('yargs')
         .alias('h',['H','help'])
         .command('serve', $.configFile('.commandargs', {parse:'json'}).commands.serve.description)
         .options( $.configFile('.commandargs', {parse:'json'}).widthdrawl )
+        .options( $.configFile('.commandargs', {parse:'json'}).denomination )
         // Check that if a '-d' deployment flag was passed, its not missing a a release -r flag, or if present it isn't the default
         .check( function(a, b){
-          console.log( "c", a.w );
             if(a.w !== 'least' && a.w !== "denomination") {
               throw "Error: The withdrawl arguments (-w, -W, --withdrawl) can only accept either least or denomination";
+            } else {
+              return true;
+            }
+        })
+        .check( function(a, b){
+          console.log( "c", a.d );
+            if(a.w == 'least' && a.d ) {
+              throw "Error: There is no need to pass a denomination flag when the app should priortise using the smallest number of notes/coins as possible.";
             } else {
               return true;
             }
@@ -162,6 +170,7 @@ gulp.task('serve', ['jade', 'styles', 'replace'], () => {
 gulp.task('replace', function(){
   gulp.src(['app/scripts/app.js'])
     .pipe($.replace('##buildtype##', argz.w))
+    .pipe($.replace('##priority-value##', argz.d))
     .pipe($.minify())
     .pipe(gulp.dest('app/scripts/dist'));
 });
