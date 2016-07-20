@@ -53,7 +53,8 @@ var argz = require('yargs')
         .options( $.configFile('.commandargs', {parse:'json'}).widthdrawl )
         // Check that if a '-d' deployment flag was passed, its not missing a a release -r flag, or if present it isn't the default
         .check( function(a, b){
-            if(a.w === 'least' || a.w === "denomination") {
+          console.log( "c", a.w );
+            if(a.w !== 'least' && a.w !== "denomination") {
               throw "Error: The withdrawl arguments (-w, -W, --withdrawl) can only accept either least or denomination";
             } else {
               return true;
@@ -67,6 +68,7 @@ var argz = require('yargs')
           // console.log(argz);
           // $.log(argv);
           // console.log(argz.P);
+          console.log( "w", a.w );
         })
 
 
