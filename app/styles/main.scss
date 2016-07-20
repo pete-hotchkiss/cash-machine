@@ -24,3 +24,13 @@ html {
 h1, h2 {
 	font-family: 'Fira Mono';
 }
+
+@include max-screen($screens-bigger-than-iphone) {
+	h1 {
+		@include rem(font-size, 18px);
+	}
+
+	h2 {
+		@include rem(font-size, 16px);
+	}
+}

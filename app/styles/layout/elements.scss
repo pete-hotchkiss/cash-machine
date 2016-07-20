@@ -47,7 +47,10 @@
   }
 
   &--right {
-    width: 50%;
+    @include min-screen($screens-bigger-than-iphone) {
+      width: 50%;
+    }
+
   }
 }
 
