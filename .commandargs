@@ -1,0 +1,15 @@
+{
+	"commands": {
+		"serve": {
+			"description": "Spins up a localhost server on port 9000, mapped to the app directory\n"
+		}
+	},
+	"widthdrawl":
+	    {  	"w": {
+	        	"alias": ["W", "withdrawl"],
+	        	"default": "least",
+	        	"describe": "Define the writhdrawl algorithm which should be used will expect on the values least or denomination",
+						"choices": ["denomination", "least"]
+	    	}
+	    }
+}

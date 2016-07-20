@@ -1,0 +1,26 @@
+head
+  meta(charset='utf-8')
+  meta(http-equiv='X-UA-Compatible', content='IE=edge')
+  meta(name='HandheldFriendly', content='True')
+  meta(name='MobileOptimized', content='320')
+  meta(name='viewport', content='width=device-width, initial-scale=1')
+  meta(name='msapplication-TileColor', content='#8b6a51')
+  meta(name='msapplication-TileImage', content='')
+  meta(name="google-site-verification" content="{{ google-web-master-tools }}") 
+  meta(name="msvalidate.01" content="{{ bing-web-master-tools }}")
+  meta(name='description' content!="<?php echo( $desc ); ?>")
+  meta(property='og:description' content!="<?php echo( $desc ); ?>")
+  link(rel='stylesheet', href='/css/main.css')
+  script(src='bower_components/angular/angular.js')
+  <!-- build:js scripts/externals/plugins.min.js-->
+  <!-- bower:js-->
+  script(src="/bower_components/jquery/dist/jquery.min.js")
+  script(src="/node_modules/pepjs/dist/pep.min.js")
+  script(src="/node_modules/jslinq/build/jslinq.min.js")
+  script(src="/node_modules/numeral/min/numeral.min.js")
+  script(src="/node_modules/numeral/min/languages/en-gb.min.js")
+  <!-- endbower-->
+  <!-- endbuild-->
+  script(src='scripts/dist/app.js')
+  script(src='scripts/ui.js')
+  title Cash Machine App

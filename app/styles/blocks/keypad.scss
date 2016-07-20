@@ -1,0 +1,22 @@
+.ui__keypad {
+  @include display(flex);
+  @include flex-wrap(wrap);
+  @include flex-direction(row);
+  @include justify-content(center);
+  @include align-items(stretch);
+  @include align-content(stretch)
+  //
+  // max-width: $left-pannel-width;
+
+  &__key {
+    // width: 30%;
+    // height: 60px;
+    // outline:3px solid #eee;
+    // display: block;
+    // @include rem(margin, 6px)
+    // text-align: center;
+    // padding-top: 20px;
+    // @include rem(font-size, 24px);
+    // cursor: pointer;
+  }
+}

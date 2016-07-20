@@ -1,0 +1,26 @@
+@import '../../bower_components/normalize-scss/_normalize';
+@import '../../bower_components/sass-mediaqueries/media-queries';
+@import '../../bower_components/bourbon/app/assets/stylesheets/bourbon';
+@import '../../bower_components/sass-rem/rem';
+@import '_global-variables';
+// Ratio to use in the site
+$ratio: $golden;
+
+// Set the baseline to the rem calculations to our default value
+$rem-baseline: $font-size;
+
+html {
+	 @include rem-baseline;
+   margin: 16px;
+}
+
+@import 'blocks/keypad';
+@import 'blocks/digital-displays';
+@import 'blocks/messaging';
+@import 'blocks/icons';
+@import 'layout/forms';
+@import 'layout/elements';
+
+h1, h2 {
+	font-family: 'Fira Mono';
+}

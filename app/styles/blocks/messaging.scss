@@ -1,0 +1,73 @@
+.ui__message-field {
+  @include rem(font-size, 20px);
+  color: #eee;
+  font-family: 'Fira Mono';
+  text-shadow: -1px 1px 1px rgba(255,255,255,.5), 0 0 0 #000, 1px 1px 1px rgba(255,255,255,.5);
+  width: 100%;
+  margin: 0 16px;
+  padding: 16px;
+  opacity: 0;
+  transition: opacity .45s ease-in-out;
+
+  & h2, & h3 {
+    @include rem(font-size, 20px);
+    margin: 0;
+  }
+
+  & p {
+    @include rem(font-size, 16px);
+  }
+
+  &--warning {
+    background-color: #ff7085;
+    color: #842332;
+    border-left: 4px solid #842332;
+    opacity: 1;
+  }
+
+  &--sucsess {
+    background-color: #c0edad;
+    color: #388616;
+    border-left: 4px solid #388616;
+    opacity: 1;
+  }
+
+  &--mid-grey {
+    background-color: #d6d6d6;
+    color: #686868;
+    border-left: 4px solid #686868;
+    opacity: 1;
+  }
+
+  & p { margin: 0; }
+
+  &--light-grey {
+    background-color: #e5e7e4;
+    color: #8c8c8c;
+    border-left: 4px solid #8c8c8c;
+    opacity: 1;
+  }
+}
+
+
+
+.ui__transaction__summary {
+
+  &--feature-item,
+  &--other-items
+  {
+    & p {
+      margin: 0 16px 0 0;
+    }
+
+    @include display(flex);
+    @include flex-wrap(wrap);
+    @include flex-direction(row);
+  }
+
+  &--other-items {
+    & p { @include rem(font-size, 13px); }
+    & p:first-of-type { width: 235px; }
+    & p:nth-of-type(2) { width: 155px; }
+  }
+}
