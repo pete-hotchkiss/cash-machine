@@ -80,7 +80,7 @@
   &--other-items {
 
     margin: 1px 0 0 -16px;
-    height: 26px;
+    min-height: 26px;
     vertical-align: top;
     padding: 5px 0 0 16px;
 
@@ -98,10 +98,12 @@
 .ui__message__heading {
   &--right {
     color: rgba(56,56,56,.3);
-    position: absolute;
-    right: 16px;
-    // padding-right: 27px
-    padding-right: 25px;
+    @include min-screen($toggle-to-rows) {
+      position: absolute;
+      right: 16px;
+      // padding-right: 27px
+      padding-right: 25px;
+    }
     cursor: pointer;
     &:after {
       @include rem(font-size, 22px !important);
@@ -112,7 +114,11 @@
       content: '\e9ce';
       width: 22px;
       position: absolute;
-      right: 0;
-    }
+      right: 16px;
+
+      @include min-screen($toggle-to-rows) {
+        right: 0;
+      }
+      }
   }
 }
