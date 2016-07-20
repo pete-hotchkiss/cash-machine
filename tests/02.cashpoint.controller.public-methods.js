@@ -105,7 +105,17 @@ describe('CaashPoint', function () {
 
       // console.dir(controller);
 
-      $scope.float = $scope.depostFunds();
+
+      $scope.depostFunds = function() {
+        $http.get('/data/float.json')
+        .success( function( data, status, headers, config ) {
+          $scope.float = data.float;
+
+        })
+        .error( function( data, status, headers, config ) {
+          $scope.valid = false;
+        })
+      };
 
       $httpBackend.when('GET', '/data/float.json')
       .respond(200, { float: [ {"denomination": 1, "amount": 100},
@@ -115,7 +125,7 @@ describe('CaashPoint', function () {
 
       expect($scope.float).toBeDefined();
       expect($scope.float.length).toBe(2);
-
+      expect($scope.currentbalance).toBe(300);
     }));
 
 
