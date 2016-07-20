@@ -76,8 +76,19 @@
   }
 
   &--other-items {
+
+    margin: 1px 0 0 -16px;
+    height: 26px;
+    vertical-align: top;
+    padding: 5px 0 0 16px;
+
     & p { @include rem(font-size, 13px); }
     & p:first-of-type { width: 235px; }
     & p:nth-of-type(2) { width: 155px; }
+
+    &--current {
+      // border: 1px solid red;
+      background-color: rgba(128,128,128, .15);
+    }
   }
 }
