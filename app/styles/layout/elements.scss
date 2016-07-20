@@ -8,8 +8,13 @@
 .ui__container,
 .ui__keypad
 {
+  @include min-screen($screens-bigger-than-iphone) {
+    max-width: 500px
+  }
+
   width:100%;
-  max-width: 500px;
+  max-width: 375px;
+
   background-color: #3a3e3d;
   padding: 16px;
 }
@@ -22,10 +27,13 @@
 }
 
 .ui__container {
-  @include display(flex);
-  @include flex-wrap(wrap);
-  @include flex-direction(row);
-  @include justify-content(center);
+
+  &--flexbox {
+    @include display(flex);
+    @include flex-wrap(wrap);
+    @include flex-direction(row);
+    @include justify-content(center);
+  }
 
   width: $left-pannel-width;
   // border:1px solid red;
@@ -35,7 +43,7 @@
 
   &--left {
     border-radius: 5px;
-    max-height: 445px;
+    // max-height: 445px;
   }
 
   &--right {
@@ -44,6 +52,8 @@
 }
 
 .ui__button {
+
+
   color: #fff;
   @include rem(font-size, 18px);
   font-family: 'Fira Mono';
@@ -68,6 +78,9 @@
     padding: 12px 0 0 0;
     text-shadow: rgb(3, 3, 3) 1px 2px 1px;
     cursor: pointer;
+    @include max-screen($screens-bigger-than-iphone) {
+      width: 70px;
+    }
   }
 
   &--green {
@@ -75,6 +88,9 @@
   }
 
   &--red {
+    @include max-screen($screens-bigger-than-iphone) {
+      margin-top: 16px;
+    }
     background-color: #ff5770;
   }
 }
