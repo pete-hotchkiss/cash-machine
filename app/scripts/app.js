@@ -1,13 +1,27 @@
 /* global angular, jslinq, numeral */
 'use strict';
 
-angular.module('cashPointApp', [])
+angular.module('cashPointApp', ['cfp.hotkeys'])
   .value('version', 'v1.0.1')
-  .controller('cashPointController', function cashPointController($scope, $http) {
+  .controller('cashPointController', function cashPointController($scope, $http, hotkeys) {
+
     $http.get('/data/float.json').then( function(result) {
         $scope.float = result.data.float;
         $scope.updateblance();
     });
+
+    hotkeys.add({ combo: '1', callback: function() { $scope.buildvalue(1);} });
+    hotkeys.add({ combo: '2', callback: function() { $scope.buildvalue(2);} });
+    hotkeys.add({ combo: '3', callback: function() { $scope.buildvalue(3);} });
+    hotkeys.add({ combo: '4', callback: function() { $scope.buildvalue(4);} });
+    hotkeys.add({ combo: '5', callback: function() { $scope.buildvalue(5);} });
+    hotkeys.add({ combo: '6', callback: function() { $scope.buildvalue(6);} });
+    hotkeys.add({ combo: '7', callback: function() { $scope.buildvalue(7);} });
+    hotkeys.add({ combo: '8', callback: function() { $scope.buildvalue(8);} });
+    hotkeys.add({ combo: '9', callback: function() { $scope.buildvalue(9);} });
+    hotkeys.add({ combo: '0', callback: function() { $scope.buildvalue(0);} });
+    hotkeys.add({ combo: 'enter', callback: function() { $scope.submit();} });
+
     $scope.locale = 'en-gb';
     $scope.withdrawlpriortiy = '##buildtype##';
     $scope.prioritydenomination = Number('##priority-value##');
