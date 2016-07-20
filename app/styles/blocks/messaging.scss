@@ -1,18 +1,20 @@
 .ui__message-field {
   @include rem(font-size, 20px);
-  @include max-screen($screens-bigger-than-iphone) {
+  @include max-screen($toggle-to-rows) {
     &:first-of-type {
       margin-top: 16px;
     }
-    max-width: 307px
+    // max-width: 307px
   }
   color: #eee;
   font-family: 'Fira Mono';
   text-shadow: -1px 1px 1px rgba(255,255,255,.5), 0 0 0 #000, 1px 1px 1px rgba(255,255,255,.5);
-  width: 100%;
+  // width: 100%;
+
   @include min-screen($screens-bigger-than-iphone) {
-    margin: 0 16px;
+    margin-left: 16px;
   }
+
   padding: 16px;
   opacity: 0;
   transition: opacity .45s ease-in-out;

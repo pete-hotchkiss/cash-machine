@@ -1,8 +1,14 @@
 .application__canvas {
   @include display(flex);
   @include flex-wrap(wrap);
-  @include flex-direction(row);
+  @include flex-direction(column);
+  @include align-items(center);
   width: 100%;
+
+  @include min-screen($toggle-to-rows) {
+      @include flex-direction(row);
+      @include align-items(flex-start);
+  }
 }
 
 .ui__container,
@@ -12,7 +18,7 @@
     max-width: 500px
   }
 
-  width:100%;
+  // width:100%;
   max-width: 375px;
 
   background-color: #3a3e3d;
@@ -35,20 +41,36 @@
     @include justify-content(center);
   }
 
-  width: $left-pannel-width;
+  // width: $left-pannel-width;
   // border:1px solid red;
 
   background-color: #3a3e3d;
   padding: 16px;
 
+  @include min-screen($toggle-to-rows) {
+
+
+
+    &--left,
+    &--right {
+      width: 45%;
+    }
+
+    &--left {
+      min-width: 420px;
+    }
+  }
+
+
   &--left {
     border-radius: 5px;
     // max-height: 445px;
+
   }
 
   &--right {
     @include min-screen($screens-bigger-than-iphone) {
-      width: 50%;
+      flex-grow:1;
     }
 
   }
@@ -92,6 +114,10 @@
 
   &--red {
     @include max-screen($screens-bigger-than-iphone) {
+      margin-top: 16px;
+    }
+
+    @include screen($toggle-to-rows, $go-all-in) {
       margin-top: 16px;
     }
     background-color: #ff5770;
