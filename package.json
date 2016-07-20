@@ -1,18 +1,18 @@
 {
   "name": "cash-machine",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Cash Machine sumulation application ",
-  "main": "index.js",
+  "main": "app/scripts/app.js",
   "scripts": {
     "test": "./tests/karma start karma.conf.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://pheekaboo@bitbucket.org/pheekaboo/cash-machine.git"
+    "url": "git+https://github.com/pete-hotchkiss/cash-machine"
   },
   "author": "Pete Hotchkiss",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/pheekaboo/cash-machine#readme",
+  "homepage": "https://github.com/pete-hotchkiss/cash-machine",
   "private": true,
   "engines": {
     "node": ">=0.12.0"

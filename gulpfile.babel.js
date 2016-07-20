@@ -62,7 +62,7 @@ var argz = require('yargs')
         })
         .check( function(a, b){
           console.log( "c", a.d );
-            if(a.w == 'least' && a.d ) {
+            if(a.w == 'least' && a.d != 2000 ) {
               throw "Error: There is no need to pass a denomination flag when the app should priortise using the smallest number of notes/coins as possible.";
             } else {
               return true;

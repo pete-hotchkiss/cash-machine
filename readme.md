@@ -42,5 +42,10 @@ gulp serve -w denomination
 
 This argument will only accept two values at present either _least_ or _denomination_. The server start will fail if you try and pass an invalid argument
 
+Additionally, if you want to override the value of the priority denomination ( which defaults to £20 ) then you can pass an additional ```--value``` argument along with your desired denomination value. *Note:* The value must be one of the denominations available and be passed in single units - i.e. £10 = 1000. The _cli_ will warn you if you try and pass an invalid value HandheldFriendly
+```
+gulp serve -w denomination --value 1000 // Will prioritise £10 notes in the resulting withdrawl
+```
+
 ### Additional configuration settings
 The starting state of the _float_ is defined in a ```JSON``` file found in ```./app/data/float.json```. This contains details of all the possible denominations of currency including they type - i.e. _coin_ or _note_. The _"denomination"_ values should not be changed ( note all these are stored in single units so 1p = 1 and £1 = 100) but the amount value can be adjusted as desired  
