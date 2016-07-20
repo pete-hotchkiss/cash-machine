@@ -2,3 +2,4 @@ bower_components
 node_modules
 **/*.html
 app/scripts/dist/**
+.tmp
