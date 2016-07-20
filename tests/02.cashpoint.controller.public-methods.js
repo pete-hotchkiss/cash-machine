@@ -101,6 +101,33 @@ describe('CaashPoint', function () {
 
     })
 
+    it('deposit() loads the float.json file again resetting the balance of available funds', inject(function ($http, $httpBackend) {
+
+      // console.dir(controller);
+
+
+      $scope.depostFunds = function() {
+        $http.get('/data/float.json')
+        .success( function( data, status, headers, config ) {
+          $scope.float = data.float;
+
+        })
+        .error( function( data, status, headers, config ) {
+          $scope.valid = false;
+        })
+      };
+
+      $httpBackend.when('GET', '/data/float.json')
+      .respond(200, { float: [ {"denomination": 1, "amount": 100},
+                    {"denomination": 2, "amount": 100} ] });
+
+      $httpBackend.flush();
+
+      expect($scope.float).toBeDefined();
+      expect($scope.float.length).toBe(2);
+      expect($scope.currentbalance).toBe(300);
+    }));
+
 
   });
 

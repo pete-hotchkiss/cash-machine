@@ -8,8 +8,9 @@ div.application__canvas
         //- input(type="text" id="withdrawlvalue" value="{{ displayvalue }}").ui__display
         div.form__ui__container
           input(type="text" id="withdrawlvalue" ng-model="displayvalue" placeholder="Enter Withdrawl Amount").ui__display
-        input(type="submit" value="Withdraw").ui__button.ui__button--green
-      button(ng-click="reset()").ui__button.ui__button--red Reset 
+        input(type="submit" value="Withdraw" ng-hide="currentbalance == 0").ui__button.ui__button--green
+      button(ng-click="reset()").ui__button.ui__button--red Reset
+      button(ng-click="depositFunds()" ng-show="currentbalance == 0").ui__button.ui__button--green Deposit Funds 
   div.ui__container--right
     div(ng-model="message" class="ui__message-field--{{ message.type | lowercase}}" ng-hide="message.type == undefined").ui__message-field 
       h2 {{message.message}}
@@ -30,7 +31,7 @@ div.application__canvas
           p #[strong Balance:] {{ i.balance }}
     
   
-h2 Current Float: {{ balance() }}
+h2 Current Float Balance: #[span(ng-hide="currentbalance < 0") {{ balance() }} ]
 div.ui__transaction__detail
   div(ng-repeat="item in float" class="ui__transaction__detail--item--{{ item.denomination}}").ui__transaction__detail--item.micro
       p {{item.amount}} 

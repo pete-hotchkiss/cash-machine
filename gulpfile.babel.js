@@ -5,7 +5,7 @@ import browserSync from 'browser-sync';
 import del from 'del';
 import {stream as wiredep} from 'wiredep';
 
-var ps = require('pause-stream')();
+// var ps = require('pause-stream')();
 const pngquant = require('imagemin-pngquant');
 /*
 
@@ -102,17 +102,17 @@ gulp.task('jade', function(cb) {
               file.data = {
                 'targetpath' : ob.dest_path,
                 'filename' : ob.dest_name };
-              ps.resume();
+              // ps.resume();
           } catch( err ) {
               file.data = {'targetpath' : cpath };
-              ps.resume();
+              // ps.resume();
           }
         })
         return file;
     })).on('end', function() {
       // console.log('file interogation complete');
     })
-    .pipe(ps.pause())
+    // .pipe(ps.pause())
     .pipe($.jade({
       pretty: true
     }))
@@ -152,7 +152,7 @@ gulp.task('serve', ['jade', 'styles', 'replace'], () => {
   });
 
   gulp.watch('app/styles/**/*.scss', ['styles']);
-  // gulp.watch('app/fonts/**/*', ['fonts']);
+  gulp.watch('app/scripts/*.js', ['replace']);
   // gulp.watch('bower.json', ['wiredep', 'fonts']);
   // gulp.watch('app/jade/**/*.jade', ['jade']);
   gulp.watch('app/jade/*.jade', ['jade'])

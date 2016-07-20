@@ -11,7 +11,7 @@ angular.module('cashPointApp', [])
     $scope.locale = 'en-gb';
     $scope.withdrawlpriortiy = '##buildtype##';
     $scope.prioritydenomination = Number('##priority-value##');
-    $scope.currentbalance = 0;
+    $scope.currentbalance = -1;
     $scope.transactions = []; // to hold transactional history
     $scope.displayvalue = 0;
     $scope.amount = 0;
@@ -68,11 +68,12 @@ angular.module('cashPointApp', [])
 
     /***
     Returns boolean value to determine in requested withdrawl amount is available. No free overdrafts at this bank
+
     @method checkAvailable
     @param a { number } - withdrawl amount requested
     */
     $scope.checkAvailableBalance = function( a ) {
-      return $scope.currentbalance > a;
+      return $scope.currentbalance >= a;
     };
 
     /**
@@ -262,5 +263,16 @@ angular.module('cashPointApp', [])
       // as long as there is stock of the priority denomination keep using it
       return ( $scope.float[ind].amount > 1 ) ? ind : $scope.float.length - 1;
     };
+
+    /**
+    Loads the float json object again to depost new funds
+    */
+    $scope.depositFunds = function( e ) {
+      $http.get('/data/float.json').then( function(result) {
+          $scope.float = result.data.float;
+          $scope.updateblance();
+          return $scope.float;
+      });
+    }
 
 });
