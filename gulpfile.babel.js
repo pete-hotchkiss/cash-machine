@@ -50,7 +50,7 @@ var argz = require('yargs')
         .help('h')
         .alias('h',['H','help'])
         .command('serve', $.configFile('.commandargs', {parse:'json'}).commands.serve.description)
-        .options( $.configFile('.commandargs', {parse:'json'}).widthdrawl )
+        .options( $.configFile('.commandargs', {parse:'json'}).withdrawal )
         .options( $.configFile('.commandargs', {parse:'json'}).denomination )
         // Check that if a '-d' deployment flag was passed, its not missing a a release -r flag, or if present it isn't the default
         .check( function(a, b){

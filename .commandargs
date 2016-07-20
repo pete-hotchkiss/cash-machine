@@ -4,9 +4,9 @@
 			"description": "Spins up a localhost server on port 9000, mapped to the app directory\n"
 		}
 	},
-	"widthdrawl":
+	"withdrawal":
 	    {  	"w": {
-	        	"alias": ["W", "withdrawl"],
+	        	"alias": ["W", "withdrawal"],
 	        	"default": "least",
 	        	"describe": "Define the writhdrawl algorithm which should be used by the application, will expect only the values 'least' or 'denomination'",
 						"choices": ["denomination", "least"]
