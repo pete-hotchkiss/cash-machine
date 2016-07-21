@@ -163,7 +163,7 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
 
       // grab an array of the currently available denominations
       var bills = $scope.getAviailableDenominations(true);
-
+      var steppedback = false;
       // the withdrawl algorithm impacts whether a given denomination whould be prioritised or just the fewest possible notes/coins. If we're running in least mode then use the entire float available. If we're in denomination priority mode then only allow the loop to count back from the index where the desired denomination exists
       var index = ($scope.withdrawlpriortiy === 'least') ? bills.length - 1 : $scope.getPriorityIndex($scope.prioritydenomination);
 
@@ -181,7 +181,7 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
           a -= bills[index].denomination;
 
           splits.push( (ty !== 'type') ? bills[index].denomination : { type: bills[index].type, value: bills[index].denomination } );
-
+          console.log('a', bills[index].denomination, $scope.formatAsCurrency(a));
           cp++;
         } else {
 
@@ -191,20 +191,21 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
             } else {
               // Should the app be running in denomination priority mode double check a larger denomination cant be used once all the available priority notes have been used
               if( $scope.withdrawlpriortiy !== 'least'
-                && cp > $scope.float[index].amount ) {
+                && a >= bills[index].denomination && !steppedback) {
+                console.log('b', a, bills[index].denomination, cp, $scope.float[index].amount, index);
                 // step back up to the start of the float by setting the index back to the float length
                 index = bills.length - 1;
                 cp = 1;
+                steppedback = true;
               } else {
+                console.log('c');
                 cp = 1;
                 index--;
               }
             }
-
         }
       }
-
-      return ( $scope.withdrawlpriortiy === 'least' ) ? splits : splits.reverse();
+      return ( $scope.withdrawlpriortiy === 'least' ) ? splits : splits.sort().reverse();
     };
 
     /***
