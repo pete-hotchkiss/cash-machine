@@ -10,17 +10,17 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
         $scope.updateblance();
     });
 
-    hotkeys.add({ combo: '1', callback: function() { $scope.buildvalue(1);} });
-    hotkeys.add({ combo: '2', callback: function() { $scope.buildvalue(2);} });
-    hotkeys.add({ combo: '3', callback: function() { $scope.buildvalue(3);} });
-    hotkeys.add({ combo: '4', callback: function() { $scope.buildvalue(4);} });
-    hotkeys.add({ combo: '5', callback: function() { $scope.buildvalue(5);} });
-    hotkeys.add({ combo: '6', callback: function() { $scope.buildvalue(6);} });
-    hotkeys.add({ combo: '7', callback: function() { $scope.buildvalue(7);} });
-    hotkeys.add({ combo: '8', callback: function() { $scope.buildvalue(8);} });
-    hotkeys.add({ combo: '9', callback: function() { $scope.buildvalue(9);} });
-    hotkeys.add({ combo: '0', callback: function() { $scope.buildvalue(0);} });
-    hotkeys.add({ combo: 'enter', callback: function() { $scope.submit();} });
+    hotkeys.add({ combo: '1', callback: function() { $scope.buildvalue(1); } });
+    hotkeys.add({ combo: '2', callback: function() { $scope.buildvalue(2); } });
+    hotkeys.add({ combo: '3', callback: function() { $scope.buildvalue(3); } });
+    hotkeys.add({ combo: '4', callback: function() { $scope.buildvalue(4); } });
+    hotkeys.add({ combo: '5', callback: function() { $scope.buildvalue(5); } });
+    hotkeys.add({ combo: '6', callback: function() { $scope.buildvalue(6); } });
+    hotkeys.add({ combo: '7', callback: function() { $scope.buildvalue(7); } });
+    hotkeys.add({ combo: '8', callback: function() { $scope.buildvalue(8); } });
+    hotkeys.add({ combo: '9', callback: function() { $scope.buildvalue(9); } });
+    hotkeys.add({ combo: '0', callback: function() { $scope.buildvalue(0); } });
+    hotkeys.add({ combo: 'enter', callback: function() { $scope.submit(); } });
 
     $scope.locale = 'en-gb';
     $scope.withdrawlpriortiy = '##buildtype##';
@@ -45,7 +45,7 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
 
     $scope.showHistoricalTransaction = function(i) {
       $scope.transationtoshow = i + 1;
-    }
+    };
 
     /**
     ng-submit wrapper to the withdraw function
@@ -174,23 +174,39 @@ console.log($scope.message);
       // start building the transaction
       while (a >= bills[0].denomination){
 
-        // The float is made up of currency in a caononical system, meaning we can use a greedy method of finding the resulting transaction strcutre, so starting with the largest possible denomination, keep adding instances of the untill such a point it's more than required so step down to next smallest denomination
+        // The float is made up of currency in a caononical system, meaning we can use a greedy method of finding the resulting transaction strcutre, so starting with the largest possible denomination, keep adding instances of the denomination untill such a point it's more than required so step down to next smallest denomination
         if (a >= bills[index].denomination && $scope.float[index].amount >= cp){
 
           // build value object to be returned to the callig method dependent on what the callee requires. Sometimes it's just the denomination value - and othertimes it's more verbose and the type of denomination the value is ( i.e. coin or note ) is also required.
           a -= bills[index].denomination;
+
           splits.push( (ty !== 'type') ? bills[index].denomination : { type: bills[index].type, value: bills[index].denomination } );
 
           cp++;
         } else {
-            cp = 1;
+
+
+
 
             // deal with instances where there is available balance but requested withdrawl cant be made
             if( bills[index].denomination === 1 && a !== 0 ) {
               throw ( new Error('Sorry - we cant provide that withdrawl amount. The float is ' + $scope.formatAsCurrency( a ) + ' short' ) );
             } else {
-              index--;
+              // Should the app be running in denomination priority mode double check a larger denomination cant be used once all the available priority notes have been used
+              console.log('check', index, $scope.withdrawlpriortiy, $scope.float[index].amount, cp);
+              if( $scope.withdrawlpriortiy !== 'least'
+                && cp > $scope.float[index].amount ) {
+                console.log("a", index);
+                // step back up to the start of the float by setting the index back to the float length
+                index = bills.length - 1;
+                console.log("b", index);
+                cp = 1;
+              } else {
+                cp = 1;
+                index--;
+              }
             }
+
         }
       }
       return splits;
@@ -287,12 +303,12 @@ console.log($scope.message);
     /**
     Loads the float json object again to depost new funds
     */
-    $scope.depositFunds = function( e ) {
+    $scope.depositFunds = function() {
       $http.get('/data/float.json').then( function(result) {
           $scope.float = result.data.float;
           $scope.updateblance();
           return $scope.float;
       });
-    }
+    };
 
 });
