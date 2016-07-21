@@ -21,6 +21,7 @@ html {
 @import 'layout/forms';
 @import 'layout/elements';
 @import 'layout/fonts';
+@import 'modifiers/behaviours';
 
 h1, h2 {
 	font-family: 'Fira Mono';
@@ -34,12 +35,4 @@ h1, h2 {
 	h2 {
 		@include rem(font-size, 16px);
 	}
-}
-
-.hidden {
-	opacity: 0;
-}
-
-.visible {
-	opacity: 1
 }

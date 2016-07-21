@@ -104,13 +104,13 @@
       // padding-right: 27px
       padding-right: 25px;
     }
-    cursor: pointer;
+
     &:after {
       @include rem(font-size, 22px !important);
       font-family: 'icomoon';
       display: block;
       margin-top: -30px !important;
-      cursor: pointer;
+      // cursor: pointer;
       content: '\e9ce';
       width: 22px;
       position: absolute;
