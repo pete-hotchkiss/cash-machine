@@ -104,7 +104,6 @@
     text-align: center;
     padding: 12px 0 0 0;
     text-shadow: rgb(3, 3, 3) 1px 2px 1px;
-    cursor: pointer;
     @include max-screen($screens-bigger-than-iphone) {
       width: 70px;
     }
@@ -131,7 +130,6 @@
   font-family: 'icomoon';
   display: block;
   margin-top: -4px !important;
-  cursor: pointer;
   &:before {
     content: '\e9ce';
   }
