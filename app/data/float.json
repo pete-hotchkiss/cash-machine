@@ -5,12 +5,12 @@
     {"denomination": 5, "amount": 100, "type":"coin"},
     {"denomination": 10, "amount": 100, "type":"coin"},
     {"denomination": 20, "amount": 100, "type":"coin"},
-    {"denomination": 50, "amount": 10, "type":"coin"},
-    {"denomination": 100, "amount": 10, "type":"coin"},
-    {"denomination": 200, "amount": 10, "type":"coin"},
-    {"denomination": 500, "amount": 10, "type":"note"},
-    {"denomination": 1000, "amount": 100, "type":"note"},
-    {"denomination": 2000, "amount": 20, "type":"note"},
-    {"denomination": 5000, "amount": 5, "type":"note"}
+    {"denomination": 50, "amount": 100, "type":"coin"},
+    {"denomination": 100, "amount": 100, "type":"coin"},
+    {"denomination": 200, "amount": 100, "type":"coin"},
+    {"denomination": 500, "amount": 100, "type":"note"},
+    {"denomination": 1000, "amount": 50, "type":"note"},
+    {"denomination": 2000, "amount": 50, "type":"note"},
+    {"denomination": 5000, "amount": 50, "type":"note"}
   ]
 }

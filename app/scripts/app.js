@@ -181,7 +181,6 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
           a -= bills[index].denomination;
 
           splits.push( (ty !== 'type') ? bills[index].denomination : { type: bills[index].type, value: bills[index].denomination } );
-          console.log('a', bills[index].denomination, $scope.formatAsCurrency(a));
           cp++;
         } else {
 
@@ -192,13 +191,11 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
               // Should the app be running in denomination priority mode double check a larger denomination cant be used once all the available priority notes have been used
               if( $scope.withdrawlpriortiy !== 'least'
                 && a >= bills[index].denomination && !steppedback) {
-                console.log('b', a, bills[index].denomination, cp, $scope.float[index].amount, index);
                 // step back up to the start of the float by setting the index back to the float length
                 index = bills.length - 1;
                 cp = 1;
                 steppedback = true;
               } else {
-                console.log('c');
                 cp = 1;
                 index--;
               }
