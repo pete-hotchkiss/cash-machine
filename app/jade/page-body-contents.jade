@@ -27,7 +27,7 @@ div.application__canvas
     div(ng-model="transactions" ng-class="{ 'visible': transactions.length > 1, 'hidden': transactions.length < 2 }").ui__message-field.ui__message-field--light-grey
       h4(ng-hide="transationtoshow == 0" ng-click="showHistoricalTransaction(-1)").ui__message__heading--right.show-cursor View Latest 
       h3 Previous Transactions:
-      div(ng-repeat="i in transactions | limitTo: (1 - transactions.length)" ng-class="{ 'ui__transaction__summary--other-items--current': transationtoshow == $index + 1 }").ui__transaction__summary--other-items
+      div(ng-repeat="i in transactions | limitTo: (1 - transactions.length)" ng-class="{ 'ui__transaction__summary--other-items--current': transationtoshow == $index + 1, 'odd': $odd, 'even': even }").ui__transaction__summary--other-items
         p #[strong TimeStamp:] {{ i.timestamp | date:'yyyy-MM-dd HH:mm:ss' }}
         p #[strong Amount:] {{ i.amount }}
         p #[strong Balance:] {{ i.balance }}
