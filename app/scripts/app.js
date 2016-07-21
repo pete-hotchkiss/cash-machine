@@ -146,7 +146,7 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
 
         // push a message to the UI
         $scope.message = { type: 'sucsess', message: 'Sucsessful Transaction' };
-console.log($scope.message);
+
         return t;
       }
     };
@@ -185,21 +185,15 @@ console.log($scope.message);
           cp++;
         } else {
 
-
-
-
             // deal with instances where there is available balance but requested withdrawl cant be made
             if( bills[index].denomination === 1 && a !== 0 ) {
               throw ( new Error('Sorry - we cant provide that withdrawl amount. The float is ' + $scope.formatAsCurrency( a ) + ' short' ) );
             } else {
               // Should the app be running in denomination priority mode double check a larger denomination cant be used once all the available priority notes have been used
-              console.log('check', index, $scope.withdrawlpriortiy, $scope.float[index].amount, cp);
               if( $scope.withdrawlpriortiy !== 'least'
                 && cp > $scope.float[index].amount ) {
-                console.log("a", index);
                 // step back up to the start of the float by setting the index back to the float length
                 index = bills.length - 1;
-                console.log("b", index);
                 cp = 1;
               } else {
                 cp = 1;
@@ -209,7 +203,8 @@ console.log($scope.message);
 
         }
       }
-      return splits;
+
+      return ( $scope.withdrawlpriortiy === 'least' ) ? splits : splits.reverse();
     };
 
     /***
