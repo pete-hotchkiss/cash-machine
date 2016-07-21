@@ -3,25 +3,20 @@
   @include flex-wrap(wrap);
   @include flex-direction(column);
   @include align-items(center);
-  width: 100%;
-
   @include min-screen($toggle-to-rows) {
-      @include flex-direction(row);
-      @include align-items(flex-start);
+    @include flex-direction(row);
+    @include align-items(flex-start);
   }
+  width: 100%;
 }
 
 .ui__container,
-.ui__keypad
-{
+.ui__keypad {
   @include min-screen($screens-bigger-than-iphone) {
-    max-width: 500px
+    max-width: 500px;
   }
-
-  // width:100%;
-  max-width: 375px;
-
   background-color: #3a3e3d;
+  max-width: 375px;
   padding: 16px;
 }
 
@@ -43,15 +38,7 @@
     @include justify-content(center);
   }
 
-  // width: $left-pannel-width;
-  // border:1px solid red;
-
-  background-color: #3a3e3d;
-  padding: 16px;
-
   @include min-screen($toggle-to-rows) {
-
-
 
     &--left,
     &--right {
@@ -62,51 +49,45 @@
       min-width: 420px;
     }
   }
-
+  background-color: #3a3e3d;
+  padding: 16px;
 
   &--left {
     border-radius: 5px;
-    // max-height: 445px;
-
   }
 
   &--right {
     @include min-screen($screens-bigger-than-iphone) {
-      flex-grow:1;
+      flex-grow: 1;
     }
-
   }
 }
 
 .ui__button {
 
-
-  color: #fff;
   @include rem(font-size, 18px);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 43%, rgba(0, 0, 0, .1) 93%, rgba(0, 0, 0, .15) 100%);
+  border: 2px solid #171717;
+  border-radius: 5px;
+  box-shadow: 0 2px 2px 0 rgba(255, 255, 255, .25), inset 0 0 0 1px rgba(0, 0, 0, .54);
+  color: #fff;
   font-family: 'Fira Mono';
   font-weight: 900;
-  min-height: 45px;
-  width: 105px;
   margin: 0 8px;
-  border-radius: 5px;
-  border: 2px solid #171717;
-  text-shadow: rgb(3, 3, 3) 0px 1px 1px;
-
-  // box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,0.54);
-
-  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 43%,rgba(0,0,0,0.1) 93%,rgba(0,0,0,0.15) 100%);
-
-  box-shadow: 0px 2px 2px 0px rgba(255,255,255,0.25), inset 0px 0px 0px 1px rgba(0,0,0,0.54);
+  min-height: 45px;
+  text-shadow: rgb(3, 3, 3) 0 1px 1px;
+  width: 105px;
 
   &--grey {
     @include rem(font-size, 26px);
-    margin-bottom: 16px;
-    text-align: center;
-    padding: 12px 0 0 0;
-    text-shadow: rgb(3, 3, 3) 1px 2px 1px;
     @include max-screen($screens-bigger-than-iphone) {
       width: 70px;
     }
+
+    margin-bottom: 16px;
+    padding-top: 12px;
+    text-align: center;
+    text-shadow: rgb(3, 3, 3) 1px 2px 1px;
   }
 
   &--green {
@@ -121,15 +102,17 @@
     @include screen($toggle-to-rows, $go-all-in) {
       margin-top: 16px;
     }
+
     background-color: #ff5770;
   }
 }
 
 .ui__transaction--icon {
   @include rem(font-size, 22px !important);
-  font-family: 'icomoon';
   display: block;
+  font-family: 'icomoon';
   margin-top: -4px !important;
+
   &:before {
     content: '\e9ce';
   }

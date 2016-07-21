@@ -22,34 +22,31 @@ $icons: (
   // text-align: right;
 
   & p {
-    border-radius: 25px;
-    height: 25px;
-    display: block;
-    /* font-weight: 900; */
-    font-size: 18px;
+    @include rem(font-size, 18px);
     background-color: #fff;
-    /* padding-top: 20px; */
-    width: 28px;
-    text-align: center;
-    padding-top: 2px;
-    border: 0px solid #000;
-    box-shadow: 0px 0px 4px #000;
-    margin-top: 4px;
+    border-radius: 25px;
+    box-shadow: 0 0 4px #000;
     color: #a3a3a3;
-
+    display: block;
+    height: 25px;
+    margin-top: 4px;
+    padding-top: 2px;
+    text-align: center;
+    width: 28px;
   }
 
-  &.micro p {
-    font-family: 'Fira Mono';
-    @include rem(font-size, 16px);
-    letter-spacing: -2px;
-    // margin-top: 3px;
+  &.micro {
+    p {
+      @include rem(font-size, 16px);
+      font-family: 'Fira Mono';
+      letter-spacing: -2px;
+    }
   }
 
   @each $b in $icons {
     &--#{nth($b, 1)} {
       background-position: #{nth($b, 2)}px #{nth($b, 3)}px;
-      padding-left: #{nth($b, 4)}px
+      padding-left: #{nth($b, 4)}px;
     }
   }
 }

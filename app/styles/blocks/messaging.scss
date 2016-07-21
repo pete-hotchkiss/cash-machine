@@ -115,6 +115,9 @@
 
     &:after {
       @include rem(font-size, 22px !important);
+      @include min-screen($toggle-to-rows) {
+        right: 0;
+      }
       font-family: 'icomoon';
       display: block;
       margin-top: -30px !important;
@@ -123,10 +126,6 @@
       width: 22px;
       position: absolute;
       right: 16px;
-
-      @include min-screen($toggle-to-rows) {
-        right: 0;
-      }
       }
   }
 }
