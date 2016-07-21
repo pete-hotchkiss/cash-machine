@@ -174,7 +174,7 @@ console.log($scope.message);
       // start building the transaction
       while (a >= bills[0].denomination){
 
-        // keep adding instances of the current denomination untill such a point it's more than required so step down to next smallest denomination
+        // The float is made up of currency in a caononical system, meaning we can use a greedy method of finding the resulting transaction strcutre, so starting with the largest possible denomination, keep adding instances of the untill such a point it's more than required so step down to next smallest denomination
         if (a >= bills[index].denomination && $scope.float[index].amount >= cp){
 
           // build value object to be returned to the callig method dependent on what the callee requires. Sometimes it's just the denomination value - and othertimes it's more verbose and the type of denomination the value is ( i.e. coin or note ) is also required.
