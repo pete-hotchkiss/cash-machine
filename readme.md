@@ -53,14 +53,14 @@ The starting state of the _float_ is defined in a ```JSON``` file found in ```./
 ## Other notes
 The algorithm's used internally within this application are distinctly different but intrinsically linked within their execution.
 
-1. When running in _least_ mode the application is solving what is effectively a _Knapsack Problem_ more commonly known as the *_Change Making Problem_*, and computationally similar to calculating ways a 9 dart finish could be completed in darts. Mathematically there are a number of approaches to tackle this, each of which vary in how intensive the process would be.
+1. When running in ```least``` mode the application is solving what is effectively a _Knapsack Problem_ more commonly known as the *_Change Making Problem_*, and computationally similar to calculating ways a 9 dart finish could be completed in darts. Mathematically there are a number of approaches to tackle this, each of which vary in how intensive the process would be.
 
-  In this instance out float is made up of denominations that fall into a canonical currency system, meaning we can use a greedy method to calculate our transaction. The algorithm continually picks the largest denomination available (_n_) reducing the target amount (_least_) accordingly; and continues to do so until such a point that either all available instances of that denomination have been depleted or _n > a_. In either instance it simply steps down to the next smallest denomination _n-1_ and repeats.
+  In this instance out float is made up of denominations that fall into a canonical currency system, meaning we can use a greedy method to calculate our transaction. The algorithm continually picks the largest denomination available (```n```) reducing the target amount accordingly; and continues to do so until such a point that either all available instances of that denomination have been depleted or ```n > a```. In either instance it simply steps down to the next smallest denomination ```n-1``` and repeats.
 
   However, should the denomination system within the currency have arbitrary values it could result in this _greedy_ approach returning no optimised results.
 
-  > eg A system with coins/notes holding the values 1, 3, 4 attempting to withdraw 6 under the greedy method would return [ 4, 1, 1] for a total of 3 coins. However the optimal result would be [ 3, 3] or 2 coins
+  > eg A system with coins/notes holding the values 1, 3, 4 attempting to withdraw 6 under the greedy method would return [ 4, 1, 1 ] for a total of 3 coins. However the optimal result would be [ 3, 3 ] or 2 coins
 
   In instances where the application needs to support arbitrary currency systems then the ability to switch out the algorithm for a more intensive bottom-up dynamic approach would be required.
 
-2. The alternative _denomination_ mode, where in the application will heavily favour a given denomination (_m_) does run on the same _greedy_ system as detailed above, however rather than starting with the largest possible denomination (_n_) it begins the calculation loop with the denomination (_m_) using as many instances of this denomination that the float will allow.
+2. The alternative ```denomination``` mode, where in the application will heavily favour a given denomination (```m```) does run on the same _greedy_ system as detailed above, however rather than starting with the largest possible denomination (```n```) it begins the calculation loop with the denomination (```m```) using as many instances of this denomination that the float will allow.
