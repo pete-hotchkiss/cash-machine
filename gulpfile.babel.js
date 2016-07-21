@@ -136,7 +136,7 @@ function lint(files, options) {
 gulp.task('lint', lint(['app/scripts/*.js'] ));
 
 // gulp.task('serve', ['styles', 'fonts'], () => {
-gulp.task('serve', ['jade', 'styles', 'replace'], () => {
+gulp.task('serve', [], () => {
   browserSync({
     notify: false,
     port: 9000,
