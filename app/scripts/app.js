@@ -35,7 +35,7 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
     $scope.reset = function() {
       $scope.displayvalue = $scope.formatAsCurrency( 0 );
       $scope.amount = 0;
-      $scope.message = {};
+      // $scope.message = {};
     };
 
     $scope.buildvalue = function( a ) {
@@ -146,6 +146,7 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
 
         // push a message to the UI
         $scope.message = { type: 'sucsess', message: 'Sucsessful Transaction' };
+console.log($scope.message);
         return t;
       }
     };
