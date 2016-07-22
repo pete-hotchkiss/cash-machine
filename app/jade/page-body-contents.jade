@@ -17,8 +17,9 @@ div.application__canvas
     div(ng-model="transactions[transationtoshow]" ng-class="{ 'visible': transactions.length > 0, 'hidden': transactions.length == 0 }").ui__message-field.ui__message-field--mid-grey 
       h3 Transaction Details:
       div.ui__transaction__summary
-        div
-          p #[strong TimeStamp:] {{ transactions[transationtoshow].timestamp | date:'yyyy-MM-dd HH:mm:ss' }} · #[strong Amount:] {{ transactions[transationtoshow].amount }} · #[strong Balance:] {{ transactions[transationtoshow].balance }}
+        div(ng-alias="transactions[transationtoshow] as i")
+          transaction-summary
+          //- p #[strong TimeStamp:] {{ transactions[transationtoshow].timestamp | date:'yyyy-MM-dd HH:mm:ss' }} · #[strong Amount:] {{ transactions[transationtoshow].amount }} · #[strong Balance:] {{ transactions[transationtoshow].balance }}
           //- p #[strong TimeStamp:] {{ transactions[0].timestamp | date:'yyyy-MM-dd HH:mm:ss' }} · #[strong Amount:] {{ transactions[0].amount }} · #[strong Balance:] {{ transactions[0].balance }}
         div.ui__transaction__detail
           div(ng-repeat="t in transactions[transationtoshow].withdrawldetail" class="ui__transaction__detail--item--{{ t.key}}").ui__transaction__detail--item 
