@@ -21,6 +21,7 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
     hotkeys.add({ combo: '9', callback: function() { $scope.buildvalue(9); } });
     hotkeys.add({ combo: '0', callback: function() { $scope.buildvalue(0); } });
     hotkeys.add({ combo: 'enter', callback: function() { $scope.submit(); } });
+    hotkeys.add({ combo: 'backspace', callback: function() { $scope.deleteValue(); } });
 
     $scope.locale = 'en-gb';
     $scope.withdrawlpriortiy = '##buildtype##';
@@ -40,6 +41,18 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
 
     $scope.buildvalue = function( a ) {
       $scope.amount = ($scope.amount === 0 ) ? a : $scope.amount.toString() + a;
+      $scope.displayvalue = $scope.formatAsCurrency( $scope.amount );
+    };
+
+    /**
+    Deletes the last digit entered on the key pad
+
+    @method deleteValue
+    */
+    $scope.deleteValue = function() {
+      console.log('delete', $scope.amount);
+      // current amount is a string so as long as it has some length lob that last character off the end.
+      $scope.amount = ($scope.amount.length == 1) ? '0' : $scope.amount.substr(0, $scope.amount.length - 1);
       $scope.displayvalue = $scope.formatAsCurrency( $scope.amount );
     };
 

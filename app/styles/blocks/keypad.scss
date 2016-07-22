@@ -2,11 +2,17 @@
   @include display(flex);
   @include flex-wrap(wrap);
   @include flex-direction(row);
-  @include justify-content(center);
+  @include justify-content(flex-end);
   @include align-items(stretch);
   @include align-content(stretch)
   //
   // max-width: $left-pannel-width;
+
+  width: 270px;
+  @include min-screen($toggle-to-rows) {
+    // width: auto;
+    width: 375px;
+  };
 
   &__key {
     // width: 30%;
