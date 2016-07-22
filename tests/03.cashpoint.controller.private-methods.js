@@ -144,6 +144,12 @@ describe('CaashPoint', function () {
       expect( function() { $scope.changeWithdrawlPriority('p') }).toThrow(new Error('Invalid priority type requested'));
     });
 
+    it("deleteValue() method should remove the last entered value entered on the keypad", function() {
+      $scope.amount == "1234567890";
+      $scope.deleteValue();
+      expect( $scope.amount ).toEqual('123456789');
+    })
+
 
   });
 

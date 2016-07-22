@@ -43,6 +43,16 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
       $scope.displayvalue = $scope.formatAsCurrency( $scope.amount );
     };
 
+    /**
+    Deletes the last digit entered on the key pad
+
+    @method deleteValue
+    */
+    $scope.deleteValue = function() {
+      // current amount is a string so as long as it has some length lob that last character off the end.
+      $scope.amount = $scope.amount.substr(0, $scope.amount.length - 1);
+    };
+
     $scope.showHistoricalTransaction = function(i) {
       $scope.transationtoshow = i + 1;
     };
