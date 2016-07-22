@@ -13,8 +13,10 @@
 .ui__container,
 .ui__keypad {
   @include min-screen($screens-bigger-than-iphone) {
-    max-width: 500px;
+    // max-width: 500px;
+    // margin: 0 auto;
   }
+  margin: 0 auto;
   background-color: #3a3e3d;
   max-width: 375px;
   padding: 16px;
@@ -46,7 +48,7 @@
     }
 
     &--left {
-      min-width: 420px;
+      min-width: 460px;
     }
   }
   background-color: #3a3e3d;
@@ -80,7 +82,7 @@
 
   &--grey {
     @include rem(font-size, 26px);
-    @include max-screen($screens-bigger-than-iphone) {
+    @include max-screen($toggle-to-rows) {
       width: 70px;
     }
 
