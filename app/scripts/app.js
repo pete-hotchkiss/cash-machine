@@ -304,4 +304,9 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
       });
     };
 
-});
+  })
+  .directive('transactionSummary', function() {
+    return {
+      templateUrl: 'templates/transaction-summary.html'
+    };
+  });

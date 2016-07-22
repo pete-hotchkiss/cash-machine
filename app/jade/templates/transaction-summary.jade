@@ -1,0 +1,5 @@
+//- { "dest_path": "./app/templates" }
+p #[strong TimeStamp:] {{ i.timestamp | date:'yyyy-MM-dd HH:mm:ss' }}
+p #[strong Amount:] {{ i.amount }}
+p #[strong Balance:] {{ i.balance }}
+p(ng-click="showHistoricalTransaction($index)").ui__transaction--icon.show-cursor
