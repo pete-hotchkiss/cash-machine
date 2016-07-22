@@ -24,6 +24,8 @@ module.exports = function(config) {
       '../bower_components/angular/angular.min.js',
       '../bower_components/angular-mocks/angular-mocks.js',
       '../bower_components/angular-hotkeys/build/hotkeys.min.js',
+      '../bower_components/angular-hotkeys/build/hotkeys.min.js',
+      '../app/scripts/directives/*.js',
       '../node_modules/jslinq/build/jslinq.min.js',
       '../node_modules/numeral/min/numeral.min.js',
       '../node_modules/numeral/min/languages/en-gb.min.js',

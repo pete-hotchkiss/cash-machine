@@ -100,8 +100,7 @@ describe('CaashPoint', function () {
       // change the withdrawl algorothm
       $scope.changeWithdrawlPriority('d');
       var nw = $scope.withdraw(10268);
-
-      expect(nw.withdrawldetail[3].count).toEqual( Math.floor( 10268 / $scope.prioritydenomination));
+      expect(nw.withdrawldetail[0].count).toEqual( Math.floor( 10268 / $scope.prioritydenomination));
 
     });
 
