@@ -90,7 +90,7 @@ gulp.task('jade', function(cb) {
   const props = $.vinylProperties(['path, contents']);
 
   //
-  return gulp.src(['./app/jade/index.jade', './app/jade/js-buildouts/*.jade'])
+  return gulp.src(['./app/jade/index.jade', './app/jade/js-buildouts/*.jade', './app/jade/templates/*.jade'])
     // .pipe( $.if( argz.v, $.print()))
     .pipe( $.intercept( function(file) {
         //  Read the first line of the Jade file for any local, file level settings
@@ -136,7 +136,7 @@ function lint(files, options) {
 gulp.task('lint', lint(['app/scripts/*.js'] ));
 
 // gulp.task('serve', ['styles', 'fonts'], () => {
-gulp.task('serve', [], () => {
+gulp.task('serve', ['jade', 'styles', 'replace'], () => {
   browserSync({
     notify: false,
     port: 9000,
@@ -155,7 +155,7 @@ gulp.task('serve', [], () => {
   gulp.watch('app/scripts/*.js', ['replace']);
   // gulp.watch('bower.json', ['wiredep', 'fonts']);
   // gulp.watch('app/jade/**/*.jade', ['jade']);
-  gulp.watch('app/jade/*.jade', ['jade'])
+  gulp.watch('app/jade/**/*.jade', ['jade'])
 
   gulp.watch([
     'app/*.html',

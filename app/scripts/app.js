@@ -1,4 +1,4 @@
-/* global angular, jslinq, numeral */
+/* global angular, jslinq, numeral, ngAlias */
 'use strict';
 
 angular.module('cashPointApp', ['cfp.hotkeys'])
@@ -304,4 +304,10 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
       });
     };
 
-});
+  })
+  .directive('ngAlias', ngAlias )
+  .directive('transactionSummary', function() {
+    return {
+      templateUrl: 'templates/transaction-summary.html'
+    };
+  });
