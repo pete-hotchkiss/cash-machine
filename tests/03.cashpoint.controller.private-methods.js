@@ -141,14 +141,29 @@ describe('CaashPoint', function () {
       // $scope.withdrawlpriortiy = 'smallest';
 
       // if called with an invalid argument type then an error should have been thrown
-      expect( function() { $scope.changeWithdrawlPriority('p') }).toThrow(new Error('Invalid priority type requested'));
+      expect( function() { $scope.changeWithdrawlPriority('p'); }).toThrow( new Error('Invalid priority type requested' ));
     });
 
-    it("deleteValue() method should remove the last entered value entered on the keypad", function() {
-      $scope.amount == "1234567890";
+    it('deleteValue() method should remove the last entered value entered on the keypad', function() {
+
+      $scope.amount = '1234567890';
+      // lop a value of the end and check the amount changes
       $scope.deleteValue();
       expect( $scope.amount ).toEqual('123456789');
-    })
+      // and repeat
+      $scope.deleteValue();
+      expect( $scope.amount ).toEqual('12345678');
+
+      $scope.deleteValue();
+      $scope.deleteValue();
+      $scope.deleteValue();
+      $scope.deleteValue();
+      $scope.deleteValue();
+      $scope.deleteValue();
+      $scope.deleteValue();
+      $scope.deleteValue();
+      expect( $scope.amount ).toEqual('0');
+    });
 
 
   });
