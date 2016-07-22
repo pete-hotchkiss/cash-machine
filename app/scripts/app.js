@@ -50,12 +50,16 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
     @method deleteValue
     */
     $scope.deleteValue = function() {
-      console.log('delete', $scope.amount);
       // current amount is a string so as long as it has some length lob that last character off the end.
-      $scope.amount = ($scope.amount.length == 1) ? '0' : $scope.amount.substr(0, $scope.amount.length - 1);
+      $scope.amount = ($scope.amount.length === 1) ? '0' : $scope.amount.substr(0, $scope.amount.length - 1);
       $scope.displayvalue = $scope.formatAsCurrency( $scope.amount );
     };
 
+    /**
+    Sets the transaction to show the detail for to an appropriate index
+
+    @method showHistoricalTransaction;
+    */
     $scope.showHistoricalTransaction = function(i) {
       $scope.transationtoshow = i + 1;
     };
