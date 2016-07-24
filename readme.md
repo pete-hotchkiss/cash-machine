@@ -1,4 +1,4 @@
-# Cash Point Application
+# Cash Point Application [![Build Status](https://travis-ci.org/pete-hotchkiss/cash-machine.svg?branch=master)](https://travis-ci.org/pete-hotchkiss/cash-machine)
 
 ![alt text](cash-machine-app.png "Cash Machine Application")
 
