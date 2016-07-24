@@ -2,8 +2,8 @@
 'use strict';
 
 angular.module('cashPointApp', ['cfp.hotkeys'])
-  .value('version', 'v1.0.1')
-  .controller('cashPointController', function cashPointController($scope, $http, hotkeys) {
+  .value('version', 'v0.1.0')
+  .controller('cashPointController', ['$scope', '$http', 'hotkeys', function cashPointController($scope, $http, hotkeys) {
 
     $http.get('/data/float.json').then( function(result) {
         $scope.float = result.data.float;
@@ -321,7 +321,7 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
       });
     };
 
-  })
+  }])
   .directive('ngAlias', ngAlias )
   .directive('transactionSummary', function() {
     return {
