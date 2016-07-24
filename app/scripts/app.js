@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('cashPointApp', ['cfp.hotkeys'])
-  .value('version', 'v0.1.0')
+  .value('version', 'v1.0.1')
   .controller('cashPointController', ['$scope', '$http', 'hotkeys', function cashPointController($scope, $http, hotkeys) {
 
     $http.get('/data/float.json').then( function(result) {
