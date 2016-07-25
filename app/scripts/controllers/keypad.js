@@ -21,8 +21,9 @@ function keypad( $scope, hotkeys ) {
   hotkeys.add({ combo: 'backspace', callback: function() { $scope.deleteValue(); } });
 
   $scope.reset = function() {
-    console.log('reset');
-    $scope.$parent.displayvalue = $scope.formatAsCurrency( 0 );
+    // console.log('reset aaa');
+    // console.log("amount");
+    // $scope.$parent.displayvalue = $scope.$parent.formatAsCurrency( 0 );
     $scope.$parent.amount = 0;
     $scope.$parent.message = {};
   };
@@ -55,7 +56,7 @@ function keypad( $scope, hotkeys ) {
       $scope.updateFloat( wd );
 
       /// ...and return a cash data object with the details we need
-      var t = { timestamp: Date.now(), amount: $scope.formatAsCurrency(a), balance: $scope.formatAsCurrency($scope.currentbalance), totalcount: wd.length, withdrawldetail: $scope.getRequestedWithdrawlCounts( wd ),
+      var t = { timestamp: Date.now(), amount: a, balance: $scope.currentbalance, totalcount: wd.length, withdrawldetail: $scope.getRequestedWithdrawlCounts( wd ),
       breakdown: cn, simple: wd }; // singleOrDefault
 
       // dump the latest transaction into the transaction history

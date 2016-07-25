@@ -1,4 +1,4 @@
-/* global angular, jslinq, numeral, ngAlias */
+/* global angular, jslinq, numeral, ngAlias, asCurrency */
 'use strict';
 
 angular.module('cashPointApp', ['cfp.hotkeys'])
@@ -42,7 +42,7 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
     $scope.buildvalue = function( a ) {
       console.log("bv", a, $scope.amount);
       $scope.amount = ($scope.amount === 0 ) ? a : $scope.amount.toString() + a;
-      $scope.displayvalue = $scope.formatAsCurrency( $scope.amount );
+      // $scope.displayvalue = $scope.formatAsCurrency( $scope.amount );
     };
 
     /**
@@ -53,7 +53,7 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
     $scope.deleteValue = function() {
       // current amount is a string so as long as it has some length lob that last character off the end.
       $scope.amount = ($scope.amount.length === 1) ? '0' : $scope.amount.substr(0, $scope.amount.length - 1);
-      $scope.displayvalue = $scope.formatAsCurrency( $scope.amount );
+      // $scope.displayvalue = $scope.formatAsCurrency( $scope.amount );
     };
 
     /**
@@ -100,7 +100,7 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
     @param s { string } - currency format to return in
   	*/
     $scope.balance = function() {
-      return $scope.formatAsCurrency( $scope.currentbalance );
+      return $scope.currentbalance;
     };
 
     /***
@@ -164,7 +164,7 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
 
             // deal with instances where there is available balance but requested withdrawl cant be made
             if( bills[index].denomination === 1 && a !== 0 ) {
-              throw ( new Error('Sorry - we cant provide that withdrawl amount. The float is ' + $scope.formatAsCurrency( a ) + ' short' ) );
+              throw ( new Error('Sorry - we cant provide that withdrawl amount. The float is ' + a + ' short' ) );
             } else {
               // Should the app be running in denomination priority mode double check a larger denomination cant be used once all the available priority notes have been used
               if( $scope.withdrawlpriortiy !== 'least'
@@ -255,10 +255,10 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
     /**
     Return a passed value in single units into decimal format - i.e. 100 units = £1
     */
-    $scope.formatAsCurrency = function( a ) {
-      numeral.language($scope.locale);
-      return numeral(a).divide(100).format( '$0,0.00' );
-    };
+    // $scope.formatAsCurrency = function( a ) {
+    //   numeral.language($scope.locale);
+    //   return numeral(a).divide(100).format( '$0,0.00' );
+    // };
 
     /**
     returns the index of the priority denomination to be used if applicable
@@ -284,8 +284,32 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
 
   }])
   .directive('ngAlias', ngAlias )
+  .directive('asCurrency', asCurrency )
   .directive('transactionSummary', function() {
     return {
       templateUrl: 'templates/transaction-summary.html'
+    };
+  })
+  // .filter("foo", function (v)
+  // {
+  //   function isNumeric(value)
+  //   {
+  //     return (!isNaN(parseFloat(value)) && isFinite(value));
+  //   }
+  //
+  //   return function (v) {
+  //     numeral.language('en-gb');
+  //
+  //     return isNumeric(v) ? numeral(0).divide(100).format( '$0,0.00' ) : numeral(v).divide(100).format( '$0,0.00' );
+  //   };
+  // })
+  .filter("customCurrency", function (numberFilter)
+  {
+    function isNumeric(value)
+    {
+      return (!isNaN(parseFloat(value)) && isFinite(value));
+    }
+    return function (v ) {
+      return !isNumeric(v) ? numeral(0).divide(100).format( '$0,0.00' ) : numeral(v).divide(100).format( '$0,0.00' );
     };
   });

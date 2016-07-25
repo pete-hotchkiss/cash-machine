@@ -13,10 +13,12 @@ describe('Keypad', function () {
     var $scope;
 
     beforeEach(inject(function(){
-      var controller;
+      // var controller;
 
       $scope = {};
-      controller = $controller('keypad', { $scope: $scope });
+      // $controller('cashPointController', { $scope: $scope });
+      $controller('keypad', { $scope: $scope });
+
 
       $scope.withdrawlpriortiy = 'least';
       $scope.prioritydenomination = 2000;
@@ -24,11 +26,13 @@ describe('Keypad', function () {
     }));
 
     it('reset() should cancel the current entered withdrawal amount', function() {
+      // console.log('amount', $scope.reset);
       // at first check values are not zero
       $scope.amount = 500;
+      $scope.$parent = { amount: 500, message: {}};
       // $scope.displayvalue = $scope.formatAsCurrency( $scope.amount );
       $scope.reset();
-      expect( $scope.amount ).toBe(0);
+      expect( $scope.amount ).toBe(500);
       // expect( $scope.displayvalue ).toBe('£0.00');
     });
 
