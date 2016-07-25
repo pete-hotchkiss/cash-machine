@@ -19,7 +19,7 @@ function keypad( $scope, hotkeys ) {
 
   $scope.reset = function() {
     // console.log('reset aaa');
-    // console.log("amount");
+    // console.log("amount", $scope.amount);
     // $scope.$parent.displayvalue = $scope.$parent.formatAsCurrency( 0 );
     $scope.$parent.amount = 0;
     $scope.$parent.message = {};
@@ -33,30 +33,42 @@ function keypad( $scope, hotkeys ) {
   */
   $scope.withdraw = function( a ) {
     if( isNaN(a) ) {
+      console.log('a');
       // This should never happen, but better to be safe
       throw ( new Error('Sorry - only numbers can be withdrawn'));
     }
 
     if( !$scope.checkAvailableBalance( a ) ) {
+      console.log('b');
       // Requested amount is more than the avilable balance.
       throw ( new Error('Sorry - Insuficent funds') );
     } else if ( a < 1 ) {
+      console.log('c');
       // Cant dispense fresh air so ensure that at least something have been requested
       throw ( new Error('Sorry - you need to request an ammount of at least £0.01'));
     } else {
+      console.log('dss');
       // there's enough money avilable so get a withdrawl
-      var wd = $scope.getRequestedWithdrawl(a);
-      var cn = $scope.getWithdrawlCountsTypeCounts( a );
+      var wd = $scope.$parent.getRequestedWithdrawl(a);
+      var cn = $scope.$parent.getWithdrawlCountsTypeCounts( a );
+
+      console.log('wd', 'cn');
 
       // update the float so it relfects the withdrawl
-      $scope.updateFloat( wd );
+      $scope.$parent.updateFloat( wd );
 
       /// ...and return a cash data object with the details we need
-      var t = { timestamp: Date.now(), amount: a, balance: $scope.currentbalance, totalcount: wd.length, withdrawldetail: $scope.getRequestedWithdrawlCounts( wd ),
-      breakdown: cn, simple: wd }; // singleOrDefault
+      var t = {
+        timestamp: Date.now(),
+        amount: a,
+        balance: $scope.$parent.currentbalance,
+        totalcount: wd.length,
+        withdrawldetail: $scope.$parent.getRequestedWithdrawlCounts( wd ),
+        breakdown: cn, simple: wd
+      }; // singleOrDefault
 
       // dump the latest transaction into the transaction history
-      $scope.transactions.unshift(t);
+      $scope.$parent.transactions.unshift(t);
       // reset everything
       $scope.reset();
 
@@ -71,10 +83,11 @@ function keypad( $scope, hotkeys ) {
   ng-submit wrapper to the withdraw function
   */
   $scope.submit = function() {
-    // console.log('submit', $scope.amount);
+    console.log('submit', $scope.amount, $scope.withdraw);
     try {
       $scope.withdraw( $scope.amount );
     } catch ( e ) {
+      console.log("it's failed");
       // if it doesn't work then deal with it
       $scope.$parent.message = { type: 'warning', message: e.message };
     }

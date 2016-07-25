@@ -30,8 +30,8 @@ module.exports = function(config) {
       '../node_modules/numeral/min/languages/en-gb.min.js',
       '../app/scripts/directives/*.js',
       '../app/scripts/filters/*.js',
-      '../app/scripts/*.js',
       '../app/scripts/controllers/*.js',
+      '../app/scripts/*.js',    
       '../tests/*.js'
     ],
 
