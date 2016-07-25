@@ -1,4 +1,4 @@
-/* global angular, jslinq, numeral, ngAlias, asCurrency */
+/* global angular, jslinq, numeral, ngAlias, asCurrency, keypad */
 'use strict';
 
 angular.module('cashPointApp', ['cfp.hotkeys'])
@@ -283,6 +283,7 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
     };
 
   }])
+  .controller('keypad', ['$scope', 'hotkeys', keypad ])
   .directive('ngAlias', ngAlias )
   .directive('asCurrency', asCurrency )
   .directive('transactionSummary', function() {
@@ -291,26 +292,3 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
     };
   })
   .filter('currency', currency);
-  // .filter("foo", function (v)
-  // {
-  //   function isNumeric(value)
-  //   {
-  //     return (!isNaN(parseFloat(value)) && isFinite(value));
-  //   }
-  //
-  //   return function (v) {
-  //     numeral.language('en-gb');
-  //
-  //     return isNumeric(v) ? numeral(0).divide(100).format( '$0,0.00' ) : numeral(v).divide(100).format( '$0,0.00' );
-  //   };
-  // })
-  // .filter('customCurrency', function (numberFilter)
-  // {
-  //   function isNumeric(value)
-  //   {
-  //     return (!isNaN(parseFloat(value)) && isFinite(value));
-  //   }
-  //   return function (v) {
-  //     return !isNumeric(v) ? numeral(0).divide(100).format( '$0,0.00' ) : numeral(v).divide(100).format( '$0,0.00' );
-  //   };
-  // });

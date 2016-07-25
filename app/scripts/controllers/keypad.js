@@ -1,9 +1,6 @@
 /* global angular, keypad, $parent */
 'use strict';
 
-angular.module('cashPointApp')
-  .controller('keypad', ['$scope', 'hotkeys', keypad ]);
-
 function keypad( $scope, hotkeys ) {
 
   // Set up the numeric keys as listeners
