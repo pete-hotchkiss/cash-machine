@@ -1,7 +1,7 @@
 /* global inject */
 'use strict';
 
-describe('CaashPoint', function () {
+describe('CashpointController', function () {
 
   beforeEach(module('cashPointApp'));
 

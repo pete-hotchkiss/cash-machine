@@ -19,7 +19,6 @@ describe('Keypad', function () {
       // $controller('cashPointController', { $scope: $scope });
       $controller('keypad', { $scope: $scope });
 
-
       $scope.withdrawlpriortiy = 'least';
       $scope.prioritydenomination = 2000;
       $scope.locale = 'en-gb';
