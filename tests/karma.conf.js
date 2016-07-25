@@ -30,6 +30,7 @@ module.exports = function(config) {
       '../node_modules/numeral/min/numeral.min.js',
       '../node_modules/numeral/min/languages/en-gb.min.js',
       '../app/scripts/*.js',
+      '../app/scripts/controllers/*.js',
       '../tests/*.js'
     ],
 
