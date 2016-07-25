@@ -152,7 +152,7 @@ gulp.task('serve', ['jade', 'styles', 'replace'], () => {
   });
 
   gulp.watch('app/styles/**/*.scss', ['styles']);
-  gulp.watch('app/scripts/*.js', ['replace']);
+  gulp.watch('app/scripts/**/*.js', ['replace']);
   // gulp.watch('bower.json', ['wiredep', 'fonts']);
   // gulp.watch('app/jade/**/*.jade', ['jade']);
   gulp.watch('app/jade/**/*.jade', ['jade'])
@@ -168,7 +168,8 @@ gulp.task('serve', ['jade', 'styles', 'replace'], () => {
 
 // inject appropriate argumnet to switch build...
 gulp.task('replace', function(){
-  gulp.src(['app/scripts/app.js'])
+  gulp.src(['app/scripts/app.js','app/scripts/controllers/*.js'])
+    .pipe($.print())
     .pipe($.replace('##buildtype##', argz.w))
     .pipe($.replace('##priority-value##', argz.d))
     .pipe($.minify())

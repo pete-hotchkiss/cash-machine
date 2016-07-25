@@ -1,17 +1,17 @@
-h1 Cash Machine v 0.1.0
+h1 Cash Machine {{ version }}
 div.application__canvas
-  div.ui__container.ui__container--left
+  div.ui__container.ui__container--left(ng-controller="keypad")
     div.ui__keypad
       div(ng-repeat="i in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]" data-key-value="{{i}}"  ng-click="buildvalue(i)").ui__button.ui__button--grey.ui__keypad__key.show-cursor {{i}}
       div(ng-click="deleteValue()").ui__button.ui__button--grey.ui__keypad__key.show-cursor Del
     div.ui__container--flexbox
       form(ng-submit="submit()" id="keypad").form__keypad
         div.form__ui__container
-          input(type="text" id="withdrawlvalue" ng-model="displayvalue" placeholder="Enter Withdrawl Amount").ui__display
+          input(type="text" id="withdrawlvalue" ng-model="amount" as-currency placeholder="Enter Withdrawl Amount").ui__display
         input(type="submit" value="Withdraw" ng-hide="currentbalance == 0").ui__button.ui__button--green
       button(ng-click="reset()").ui__button.ui__button--red Reset
       button(ng-click="depositFunds()" ng-show="currentbalance == 0").ui__button.ui__button--green Deposit Funds 
-  div.ui__container--right
+  div.ui__container--right(ng-controller="transactions")
     div(ng-model="message" class="ui__message-field--{{ message.type | lowercase}}"  ng-class="{ 'visible': message.type, 'hidden': !message.type }").ui__message-field 
       h2 {{message.message}}
     div(ng-model="transactions[transationtoshow]" ng-class="{ 'visible': transactions.length > 0, 'hidden': transactions.length == 0 }").ui__message-field.ui__message-field--mid-grey 
@@ -22,14 +22,14 @@ div.application__canvas
         div.ui__transaction__detail
           div(ng-repeat="t in transactions[transationtoshow].withdrawldetail" class="ui__transaction__detail--item--{{ t.key}}").ui__transaction__detail--item 
             p {{t.count}}
-      p #[strong Withdrawl: ] {{ transactions[0].breakdown.notes }} Notes ( {{ formatAsCurrency(transactions[0].breakdown.notetotal) }} ) and {{ transactions[0].breakdown.coins }} Coins ( {{ formatAsCurrency(transactions[0].breakdown.cointotal) }} )
+      p #[strong Withdrawl: ] {{ transactions[0].breakdown.notes }} Notes ( {{ transactions[0].breakdown.notetotal | currency }} ) and {{ transactions[0].breakdown.coins }} Coins ( {{ transactions[0].breakdown.cointotal | currency }} )
     div(ng-model="transactions" ng-class="{ 'visible': transactions.length > 1, 'hidden': transactions.length < 2 }").ui__message-field.ui__message-field--light-grey
       h4(ng-hide="transationtoshow == 0" ng-click="showHistoricalTransaction(-1)").ui__message__heading--right.show-cursor View Latest 
       h3 Previous Transactions:
       div(ng-repeat="i in transactions | limitTo: (1 - transactions.length)" ng-class="{ 'ui__transaction__summary--other-items--current': transationtoshow == $index + 1, 'odd': $odd, 'even': even }" transaction-summary).ui__transaction__summary--other-items
   
-h2 Current Float Balance: #[span(ng-hide="currentbalance < 0") {{ balance() }} ]
+h2 Current Float Balance: #[span(ng-hide="currentbalance < 0" ng-model="currentbalance") {{ currentbalance | currency }} ]
 div.ui__transaction__detail
   div(ng-repeat="item in float" class="ui__transaction__detail--item--{{ item.denomination}}").ui__transaction__detail--item.micro
-      p {{item.amount}} 
+      p {{ item.amount }} 
    

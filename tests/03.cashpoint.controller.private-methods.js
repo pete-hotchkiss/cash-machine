@@ -1,6 +1,8 @@
-describe('CaashPoint', function () {
+describe('Cashpoint.Controller', function () {
 
-  beforeEach(module('cashPointApp'));
+  beforeEach(
+    module('cashPointApp')
+  );
 
   var $controller, httpBackend;
 
@@ -15,8 +17,6 @@ describe('CaashPoint', function () {
     beforeEach(inject(function(){
       $scope = {};
       controller = $controller('cashPointController', { $scope: $scope });
-      $scope.withdrawlpriortiy = 'least';
-      $scope.prioritydenomination = 2000;
     }));
 
     it('balance() should return expected balance', function() {
@@ -26,12 +26,12 @@ describe('CaashPoint', function () {
       // create temporary float of total value 300
       $scope.currentbalance = 300;
       $scope.float = [ {"denomination": 1, "amount": 100}, {"denomination": 2, "amount": 100} ];
-      expect($scope.balance()).toBe("£3.00");
+      expect($scope.balance()).toBe(300);
 
       // create temporary float of total value 468
       $scope.currentbalance = 468;
       $scope.float = [ {"denomination": 1, "amount": 8}, {"denomination": 20, "amount": 3} , { "denomination": 100, "amount": 4}];
-      expect($scope.balance()).toBe("£4.68");
+      expect($scope.balance()).toBe(468);
     });
 
     it('checkAvailable() should return true or false for sufficent balance to cover withdrawl request', function() {
@@ -144,26 +144,7 @@ describe('CaashPoint', function () {
       expect( function() { $scope.changeWithdrawlPriority('p'); }).toThrow( new Error('Invalid priority type requested' ));
     });
 
-    it('deleteValue() method should remove the last entered value entered on the keypad', function() {
 
-      $scope.amount = '1234567890';
-      // lop a value of the end and check the amount changes
-      $scope.deleteValue();
-      expect( $scope.amount ).toEqual('123456789');
-      // and repeat
-      $scope.deleteValue();
-      expect( $scope.amount ).toEqual('12345678');
-
-      $scope.deleteValue();
-      $scope.deleteValue();
-      $scope.deleteValue();
-      $scope.deleteValue();
-      $scope.deleteValue();
-      $scope.deleteValue();
-      $scope.deleteValue();
-      $scope.deleteValue();
-      expect( $scope.amount ).toEqual('0');
-    });
 
 
   });

@@ -25,11 +25,13 @@ module.exports = function(config) {
       '../bower_components/angular-mocks/angular-mocks.js',
       '../bower_components/angular-hotkeys/build/hotkeys.min.js',
       '../bower_components/angular-hotkeys/build/hotkeys.min.js',
-      '../app/scripts/directives/*.js',
       '../node_modules/jslinq/build/jslinq.min.js',
       '../node_modules/numeral/min/numeral.min.js',
       '../node_modules/numeral/min/languages/en-gb.min.js',
-      '../app/scripts/*.js',
+      '../app/scripts/directives/*.js',
+      '../app/scripts/filters/*.js',
+      '../app/scripts/controllers/*.js',
+      '../app/scripts/dist/app-min.js',
       '../tests/*.js'
     ],
 
@@ -67,6 +69,7 @@ module.exports = function(config) {
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
 
+    client: { captureConsole: false },
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
