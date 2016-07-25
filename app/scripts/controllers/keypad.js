@@ -42,7 +42,6 @@ function keypad( $scope, hotkeys ) {
 
     if( !$scope.checkAvailableBalance( a ) ) {
       // Requested amount is more than the avilable balance.
-      console.log('withdrawn');
       throw ( new Error('Sorry - Insuficent funds') );
     } else if ( a < 1 ) {
       // Cant dispense fresh air so ensure that at least something have been requested
@@ -75,7 +74,7 @@ function keypad( $scope, hotkeys ) {
   ng-submit wrapper to the withdraw function
   */
   $scope.submit = function() {
-    console.log('submit', $scope.amount);
+    // console.log('submit', $scope.amount);
     try {
       $scope.withdraw( $scope.amount );
     } catch ( e ) {

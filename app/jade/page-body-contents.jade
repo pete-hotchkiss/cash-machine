@@ -22,13 +22,13 @@ div.application__canvas
         div.ui__transaction__detail
           div(ng-repeat="t in transactions[transationtoshow].withdrawldetail" class="ui__transaction__detail--item--{{ t.key}}").ui__transaction__detail--item 
             p {{t.count}}
-      p #[strong Withdrawl: ] {{ transactions[0].breakdown.notes }} Notes ( {{ formatAsCurrency(transactions[0].breakdown.notetotal) }} ) and {{ transactions[0].breakdown.coins }} Coins ( {{ formatAsCurrency(transactions[0].breakdown.cointotal) }} )
+      p #[strong Withdrawl: ] {{ transactions[0].breakdown.notes }} Notes ( {{ transactions[0].breakdown.notetotal | currency }} ) and {{ transactions[0].breakdown.coins }} Coins ( {{ transactions[0].breakdown.cointotal | currency }} )
     div(ng-model="transactions" ng-class="{ 'visible': transactions.length > 1, 'hidden': transactions.length < 2 }").ui__message-field.ui__message-field--light-grey
       h4(ng-hide="transationtoshow == 0" ng-click="showHistoricalTransaction(-1)").ui__message__heading--right.show-cursor View Latest 
       h3 Previous Transactions:
       div(ng-repeat="i in transactions | limitTo: (1 - transactions.length)" ng-class="{ 'ui__transaction__summary--other-items--current': transationtoshow == $index + 1, 'odd': $odd, 'even': even }" transaction-summary).ui__transaction__summary--other-items
   
-h2 Current Float Balance: #[span(ng-hide="currentbalance < 0" ng-model="currentbalance") {{ currentbalance | customCurrency }} ]
+h2 Current Float Balance: #[span(ng-hide="currentbalance < 0" ng-model="currentbalance") {{ currentbalance | currency }} ]
 div.ui__transaction__detail
   div(ng-repeat="item in float" class="ui__transaction__detail--item--{{ item.denomination}}").ui__transaction__detail--item.micro
       p {{ item.amount }} 

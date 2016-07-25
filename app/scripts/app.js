@@ -40,7 +40,7 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
     // };
 
     $scope.buildvalue = function( a ) {
-      console.log("bv", a, $scope.amount);
+      // console.log("bv", a, $scope.amount);
       $scope.amount = ($scope.amount === 0 ) ? a : $scope.amount.toString() + a;
       // $scope.displayvalue = $scope.formatAsCurrency( $scope.amount );
     };
@@ -290,6 +290,7 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
       templateUrl: 'templates/transaction-summary.html'
     };
   })
+  .filter('currency', currency);
   // .filter("foo", function (v)
   // {
   //   function isNumeric(value)
@@ -303,13 +304,13 @@ angular.module('cashPointApp', ['cfp.hotkeys'])
   //     return isNumeric(v) ? numeral(0).divide(100).format( '$0,0.00' ) : numeral(v).divide(100).format( '$0,0.00' );
   //   };
   // })
-  .filter("customCurrency", function (numberFilter)
-  {
-    function isNumeric(value)
-    {
-      return (!isNaN(parseFloat(value)) && isFinite(value));
-    }
-    return function (v ) {
-      return !isNumeric(v) ? numeral(0).divide(100).format( '$0,0.00' ) : numeral(v).divide(100).format( '$0,0.00' );
-    };
-  });
+  // .filter('customCurrency', function (numberFilter)
+  // {
+  //   function isNumeric(value)
+  //   {
+  //     return (!isNaN(parseFloat(value)) && isFinite(value));
+  //   }
+  //   return function (v) {
+  //     return !isNumeric(v) ? numeral(0).divide(100).format( '$0,0.00' ) : numeral(v).divide(100).format( '$0,0.00' );
+  //   };
+  // });
