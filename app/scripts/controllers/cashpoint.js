@@ -24,22 +24,12 @@ function cashPointController( $scope, $http ) {
   //   // $scope.message = {};
   // };
 
-  $scope.buildvalue = function( a ) {
-    // console.log("bv", a, $scope.amount);
-    $scope.amount = ($scope.amount === 0 ) ? a : $scope.amount.toString() + a;
-    // $scope.displayvalue = $scope.formatAsCurrency( $scope.amount );
-  };
+  // $scope.buildvalue = function( a ) {
+  //   // console.log("bv", a, $scope.amount);
+  //   $scope.amount = ($scope.amount === 0 ) ? a : $scope.amount.toString() + a;
+  //   // $scope.displayvalue = $scope.formatAsCurrency( $scope.amount );
+  // };
 
-  /**
-  Deletes the last digit entered on the key pad
-
-  @method deleteValue
-  */
-  $scope.deleteValue = function() {
-    // current amount is a string so as long as it has some length lob that last character off the end.
-    $scope.amount = ($scope.amount.length === 1) ? '0' : $scope.amount.substr(0, $scope.amount.length - 1);
-    // $scope.displayvalue = $scope.formatAsCurrency( $scope.amount );
-  };
 
   /**
   Sets the transaction to show the detail for to an appropriate index

@@ -52,8 +52,6 @@ function keypad( $scope, hotkeys ) {
       var wd = $scope.$parent.getRequestedWithdrawl(a);
       var cn = $scope.$parent.getWithdrawlCountsTypeCounts( a );
 
-      console.log('wd', 'cn');
-
       // update the float so it relfects the withdrawl
       $scope.$parent.updateFloat( wd );
 
@@ -91,6 +89,23 @@ function keypad( $scope, hotkeys ) {
       // if it doesn't work then deal with it
       $scope.$parent.message = { type: 'warning', message: e.message };
     }
+  };
+
+  /**
+  Deletes the last digit entered on the key pad
+
+  @method deleteValue
+  */
+  $scope.deleteValue = function() {
+    // current amount is a string so as long as it has some length lob that last character off the end.
+    $scope.$parent.amount = ($scope.$parent.amount.length === 1) ? '0' : $scope.$parent.amount.substr(0, $scope.$parent.amount.length - 1);
+    // $scope.displayvalue = $scope.formatAsCurrency( $scope.amount );
+  };
+
+  $scope.buildvalue = function( a ) {
+    // console.log("bv", a, $scope.amount);
+    $scope.$parent.amount = ($scope.$parent.amount === 0 ) ? a : $scope.$parent.amount.toString() + a;
+    // $scope.displayvalue = $scope.formatAsCurrency( $scope.amount );
   };
 
 }
