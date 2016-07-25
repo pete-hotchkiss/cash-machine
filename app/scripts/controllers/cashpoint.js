@@ -1,56 +1,24 @@
-/* global angular, keypad, $parent, numeral */
+/* global angular, keypad, $parent, numeral, version, withdrawlpriortiy, prioritydenomination */
 'use strict';
 
-function cashPointController( $scope, $http ) {
+function cashPointController( $scope, $http, version, withdrawlpriortiy, prioritydenomination ) {
 
   $http.get('/data/float.json').then( function(result) {
       $scope.float = result.data.float;
       $scope.updateblance();
+      console.log('Version: ', version);
+      console.log("withdrawl Mode:", withdrawlpriortiy);
+      console.log("priority Denomination:", prioritydenomination);
   });
 
-  $scope.locale = 'en-gb';
-  $scope.withdrawlpriortiy = '##buildtype##';
-  $scope.prioritydenomination = Number('##priority-value##');
+  // $scope.locale = 'en-gb';
   $scope.currentbalance = -1;
   $scope.transactions = []; // to hold transactional history
   $scope.displayvalue = 0;
   $scope.amount = 0;
   $scope.message = {};
   $scope.transationtoshow = 0;
-
-  // $scope.reset = function() {
-  //   $scope.displayvalue = $scope.formatAsCurrency( 0 );
-  //   $scope.amount = 0;
-  //   // $scope.message = {};
-  // };
-
-  // $scope.buildvalue = function( a ) {
-  //   // console.log("bv", a, $scope.amount);
-  //   $scope.amount = ($scope.amount === 0 ) ? a : $scope.amount.toString() + a;
-  //   // $scope.displayvalue = $scope.formatAsCurrency( $scope.amount );
-  // };
-
-
-  /**
-  Sets the transaction to show the detail for to an appropriate index
-
-  @method showHistoricalTransaction;
-  */
-  $scope.showHistoricalTransaction = function(i) {
-    $scope.transationtoshow = i + 1;
-  };
-
-  // /**
-  // ng-submit wrapper to the withdraw function
-  // */
-  // $scope.submit = function() {
-  //   try {
-  //     $scope.withdraw( $scope.amount );
-  //   } catch ( e ) {
-  //     // if it doesn't work then deal with it
-  //     $scope.message = { type: 'warning', message: e.message };
-  //   }
-  // };
+  $scope.version = version;
 
   /**
   Change the format of the withdrawl type - swaps between smallest number of denominations or weighting to a particualr denomination
@@ -59,13 +27,13 @@ function cashPointController( $scope, $http ) {
     switch(f) {
       case 'd':
       case 's':
-        $scope.withdrawlpriortiy = ( f === 'd' ) ? 'denomination' : 'least';
+        withdrawlpriortiy = ( f === 'd' ) ? 'denomination' : 'least';
         break;
       default:
         throw ( new Error('Invalid priority type requested') );
         // break;
     }
-    return $scope.withdrawlpriortiy;
+    return withdrawlpriortiy;
   };
 
   /**
@@ -120,13 +88,12 @@ function cashPointController( $scope, $http ) {
     var steppedback = false;
       // console.log('index', $scope.withdrawlpriortiy, index);
     // the withdrawl algorithm impacts whether a given denomination whould be prioritised or just the fewest possible notes/coins. If we're running in least mode then use the entire float available. If we're in denomination priority mode then only allow the loop to count back from the index where the desired denomination exists
-    var index = ($scope.withdrawlpriortiy === 'least') ? bills.length - 1 : $scope.getPriorityIndex($scope.prioritydenomination);
+
+    var index = ( withdrawlpriortiy === 'least') ? bills.length - 1 : $scope.getPriorityIndex( prioritydenomination );
 
     var splits = [];
 
     var cp = 1;
-
-
 
     // start building the transaction
     while (a >= bills[0].denomination){
@@ -146,7 +113,7 @@ function cashPointController( $scope, $http ) {
             throw ( new Error('Sorry - we cant provide that withdrawl amount. The float is ' + a + ' short' ) );
           } else {
             // Should the app be running in denomination priority mode double check a larger denomination cant be used once all the available priority notes have been used
-            if( $scope.withdrawlpriortiy !== 'least'
+            if( withdrawlpriortiy !== 'least'
               && a >= bills[index].denomination && !steppedback) {
               // step back up to the start of the float by setting the index back to the float length
               index = bills.length - 1;
@@ -159,7 +126,7 @@ function cashPointController( $scope, $http ) {
           }
       }
     }
-    return ( $scope.withdrawlpriortiy === 'least' ) ? splits : splits.sort().reverse();
+    return ( withdrawlpriortiy === 'least' ) ? splits : splits.sort().reverse();
   };
 
   /***

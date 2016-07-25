@@ -1,4 +1,4 @@
-describe('CashpointController', function () {
+describe('Cashpoint.Controller', function () {
 
   beforeEach(module('cashPointApp'));
 
@@ -12,7 +12,7 @@ describe('CashpointController', function () {
   describe('Instantiation Checks', function () {
 
     it('should provide a version number', inject(function(version) {
-      expect(version).toEqual('v1.0.1');
+      expect(version).toEqual('v1.0.0');
     }));
 
     it('float value object should loaded from external source', inject(function ($http, $httpBackend) {

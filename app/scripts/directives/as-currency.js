@@ -7,7 +7,7 @@ function asCurrency (){
 
 
       scope.formatAsCurrency = function (v){
-        numeral.language('en-gb');
+        
 
         return (v == 0) ? numeral(0).divide(100).format( '$0,0.00' ) : numeral(v).divide(100).format( '$0,0.00' );
 

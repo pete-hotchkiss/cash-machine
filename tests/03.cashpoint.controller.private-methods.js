@@ -1,6 +1,8 @@
-describe('CashpointController', function () {
+describe('Cashpoint.Controller', function () {
 
-  beforeEach(module('cashPointApp'));
+  beforeEach(
+    module('cashPointApp')
+  );
 
   var $controller, httpBackend;
 
@@ -15,8 +17,6 @@ describe('CashpointController', function () {
     beforeEach(inject(function(){
       $scope = {};
       controller = $controller('cashPointController', { $scope: $scope });
-      $scope.withdrawlpriortiy = 'least';
-      $scope.prioritydenomination = 2000;
     }));
 
     it('balance() should return expected balance', function() {
@@ -144,7 +144,7 @@ describe('CashpointController', function () {
       expect( function() { $scope.changeWithdrawlPriority('p'); }).toThrow( new Error('Invalid priority type requested' ));
     });
 
-    
+
 
 
   });

@@ -1,7 +1,7 @@
 /* global inject */
 'use strict';
 
-describe('CashpointController', function () {
+describe('Cashpoint.Controller', function () {
 
   beforeEach(module('cashPointApp'));
 
@@ -131,11 +131,11 @@ describe('CashpointController', function () {
       expect($scope.currentbalance).toBe(300);
     }));
 
-    it('showHistoricalTransaction() check setting the current active transaction detail changes the index pointer correctly', function() {
-      $scope.transationtoshow = 0;
-      $scope.showHistoricalTransaction(1);
-      expect($scope.transationtoshow).toEqual(2);
-    });
+    // it('showHistoricalTransaction() check setting the current active transaction detail changes the index pointer correctly', function() {
+    //   $scope.transationtoshow = 0;
+    //   $scope.showHistoricalTransaction(1);
+    //   expect($scope.transationtoshow).toEqual(2);
+    // });
 
   });
 

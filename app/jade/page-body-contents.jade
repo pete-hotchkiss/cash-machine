@@ -1,4 +1,4 @@
-h1 Cash Machine v 0.1.0
+h1 Cash Machine {{ version }}
 div.application__canvas
   div.ui__container.ui__container--left(ng-controller="keypad")
     div.ui__keypad
@@ -11,7 +11,7 @@ div.application__canvas
         input(type="submit" value="Withdraw" ng-hide="currentbalance == 0").ui__button.ui__button--green
       button(ng-click="reset()").ui__button.ui__button--red Reset
       button(ng-click="depositFunds()" ng-show="currentbalance == 0").ui__button.ui__button--green Deposit Funds 
-  div.ui__container--right
+  div.ui__container--right(ng-controller="transactions")
     div(ng-model="message" class="ui__message-field--{{ message.type | lowercase}}"  ng-class="{ 'visible': message.type, 'hidden': !message.type }").ui__message-field 
       h2 {{message.message}}
     div(ng-model="transactions[transationtoshow]" ng-class="{ 'visible': transactions.length > 0, 'hidden': transactions.length == 0 }").ui__message-field.ui__message-field--mid-grey 

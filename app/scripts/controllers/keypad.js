@@ -33,21 +33,17 @@ function keypad( $scope, hotkeys ) {
   */
   $scope.withdraw = function( a ) {
     if( isNaN(a) ) {
-      console.log('a');
       // This should never happen, but better to be safe
       throw ( new Error('Sorry - only numbers can be withdrawn'));
     }
 
     if( !$scope.checkAvailableBalance( a ) ) {
-      console.log('b');
       // Requested amount is more than the avilable balance.
       throw ( new Error('Sorry - Insuficent funds') );
     } else if ( a < 1 ) {
-      console.log('c');
       // Cant dispense fresh air so ensure that at least something have been requested
       throw ( new Error('Sorry - you need to request an ammount of at least £0.01'));
     } else {
-      console.log('dss');
       // there's enough money avilable so get a withdrawl
       var wd = $scope.$parent.getRequestedWithdrawl(a);
       var cn = $scope.$parent.getWithdrawlCountsTypeCounts( a );
@@ -81,11 +77,9 @@ function keypad( $scope, hotkeys ) {
   ng-submit wrapper to the withdraw function
   */
   $scope.submit = function() {
-    console.log('submit', $scope.amount, $scope.withdraw);
     try {
       $scope.withdraw( $scope.amount );
     } catch ( e ) {
-      console.log("it's failed");
       // if it doesn't work then deal with it
       $scope.$parent.message = { type: 'warning', message: e.message };
     }
