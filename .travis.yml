@@ -7,4 +7,4 @@ before_script:
   - sh -e /etc/init.d/xvfb start
 
 script:
-- node_modules/.bin/karma start tests/karma.conf.js --no-auto-watch --single-run --reporters=dots
+- node_modules/.bin/karma start tests/karma.conf.js --no-auto-watch --single-run --reporters=dots --browsers=Firefox
