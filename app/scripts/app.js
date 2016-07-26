@@ -3,7 +3,22 @@
 
 numeral.language('en-gb');
 
-angular.module('cashPointApp', ['cfp.hotkeys', 'toggle-switch'])
+angular.module('cashPointApp', ['cfp.hotkeys', 'toggle-switch', 'ui.router'])
+  .config(function($stateProvider, $urlRouterProvider) {
+
+    $urlRouterProvider.otherwise('/');
+
+    $stateProvider.state('home', {
+      url: '/',
+      templateUrl: 'templates/current-float.html'
+    });
+
+    $stateProvider.state('transaction-history', {
+      url: '/transaction-history',
+      templateUrl: 'templates/transaction-history.html',
+      controller: 'transactions'
+    });
+  })
   .value('version', 'v1.0.0')
   .value('withdrawlpriortiy', '##buildtype##')
   .value('prioritydenomination', Number('##priority-value##'))
