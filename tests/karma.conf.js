@@ -33,7 +33,7 @@ module.exports = function(config) {
       '../app/scripts/filters/*.js',
       '../app/scripts/controllers/*.js',
       '../app/scripts/dist/app.js',
-      '../tests/*.js'
+      '../tests/01*.js'
     ],
 
 
@@ -70,7 +70,7 @@ module.exports = function(config) {
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
 
-    client: { captureConsole: true },
+    client: { captureConsole: false },
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
