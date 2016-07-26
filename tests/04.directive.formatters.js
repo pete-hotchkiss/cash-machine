@@ -36,6 +36,7 @@ describe('CashPointDirective', function () {
           expect( scope.formatAsCurrency(0)).toBe('£0.00');
           expect( scope.formatAsCurrency(1100)).toBe('£11.00');
           expect( scope.formatAsCurrency(1234567)).toBe('£12,345.67');
+          expect( scope.formatAsCurrency(12345679)).toBe('£123,456.79');
           // expect( scope.hello()).toBe('hello');
         });
 
