@@ -144,5 +144,19 @@ describe('Keypad.Control', function () {
 
     });
 
+    it('toggle(): switching to "denomination" mode', function() {
+      // console.log('cashPointController', cashPointController, cashPointController.$scope.withdrawlpriortiy);
+
+      $scope.withdrawlpriortiy = 'least';
+      expect($scope.toggle( true )).toBe('denomination');
+    });
+
+    it('toggle(): switching to "least" mode', function() {
+      // $scope.withdrawlpriortiy = 'denomination';
+      // $scope.toggle( false );
+      // expect($scope.withdrawlpriortiy).toBe('least');
+    });
+
+
   });
 });

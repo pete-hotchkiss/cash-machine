@@ -19,21 +19,25 @@ function cashPointController( $scope, $http, version, withdrawlpriortiy, priorit
   $scope.message = {};
   $scope.transationtoshow = 0;
   $scope.version = version;
+  $scope.withdrawlpriortiy = withdrawlpriortiy;
+  $scope.prioritydenomination = prioritydenomination;
 
   /**
   Change the format of the withdrawl type - swaps between smallest number of denominations or weighting to a particualr denomination
   */
   $scope.changeWithdrawlPriority = function( f ) {
+    // console.log("currently: ", f, $scope.withdrawlpriortiy);
     switch(f) {
       case 'd':
       case 's':
-        withdrawlpriortiy = ( f === 'd' ) ? 'denomination' : 'least';
+        $scope.withdrawlpriortiy = ( f === 'd' ) ? 'denomination' : 'least';
         break;
       default:
         throw ( new Error('Invalid priority type requested') );
         // break;
     }
-    return withdrawlpriortiy;
+    // console.log("after: ", f, scope.withdrawlpriortiy);
+    return $scope.withdrawlpriortiy;
   };
 
   /**
@@ -89,7 +93,7 @@ function cashPointController( $scope, $http, version, withdrawlpriortiy, priorit
       // console.log('index', $scope.withdrawlpriortiy, index);
     // the withdrawl algorithm impacts whether a given denomination whould be prioritised or just the fewest possible notes/coins. If we're running in least mode then use the entire float available. If we're in denomination priority mode then only allow the loop to count back from the index where the desired denomination exists
 
-    var index = ( withdrawlpriortiy === 'least') ? bills.length - 1 : $scope.getPriorityIndex( prioritydenomination );
+    var index = ( $scope.withdrawlpriortiy === 'least') ? bills.length - 1 : $scope.getPriorityIndex( $scope.prioritydenomination );
 
     var splits = [];
 
@@ -113,7 +117,7 @@ function cashPointController( $scope, $http, version, withdrawlpriortiy, priorit
             throw ( new Error('Sorry - we cant provide that withdrawl amount. The float is ' + a + ' short' ) );
           } else {
             // Should the app be running in denomination priority mode double check a larger denomination cant be used once all the available priority notes have been used
-            if( withdrawlpriortiy !== 'least'
+            if( $scope.withdrawlpriortiy !== 'least'
               && a >= bills[index].denomination && !steppedback) {
               // step back up to the start of the float by setting the index back to the float length
               index = bills.length - 1;
@@ -126,7 +130,7 @@ function cashPointController( $scope, $http, version, withdrawlpriortiy, priorit
           }
       }
     }
-    return ( withdrawlpriortiy === 'least' ) ? splits : splits.sort().reverse();
+    return ( $scope.withdrawlpriortiy === 'least' ) ? splits : splits.sort().reverse();
   };
 
   /***

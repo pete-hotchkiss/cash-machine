@@ -102,4 +102,13 @@ function keypad( $scope, hotkeys ) {
     // $scope.displayvalue = $scope.formatAsCurrency( $scope.amount );
   };
 
+  $scope.toggle = function( s ) {
+    // console.log("staus is: ", s, $scope.$parent.withdrawlpriortiy);
+    // $scope.$parent.withdrawlpriortiy = ( s ) ? "least" : "denomination";
+    // console.log( $scope.$parent.changeWithdrawlPriority, (s) ? "d" : "s" );
+    return $scope.$parent.changeWithdrawlPriority( (s) ? "d" : "s" );
+    // return $scope.$parent.withdrawlpriortiy;
+    // console.log("staus is: ", s, $scope.$parent.withdrawlpriortiy);
+  }
+
 }
