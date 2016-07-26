@@ -1,4 +1,5 @@
-# Cash Point Application [![Build Status](https://travis-ci.org/pete-hotchkiss/cash-machine.svg?branch=master)](https://travis-ci.org/pete-hotchkiss/cash-machine) 
+# Cash Point Application
+[![Build Status](https://travis-ci.org/pete-hotchkiss/cash-machine.svg?branch=master)](https://travis-ci.org/pete-hotchkiss/cash-machine)
 
 ![alt text](cash-machine-app.png "Cash Machine Application")
 
@@ -46,6 +47,8 @@ Additionally, if you want to override the value of the priority denomination ( w
 ```
 gulp serve -w denomination --value 1000 // Will prioritise £10 notes in the resulting withdrawal
 ```
+
+The application UI provides an additional toggle between these two states, enabling the user to switch between the modes at run time.
 
 ## Additional configuration considerations
 The starting state of the _float_ is defined in a ```JSON``` file found in ```./app/data/float.json```. This contains details of all the possible denominations of currency including their type - i.e. _coin_ or _note_. The _"denomination"_ values should not be changed ( note all these are stored in single units so 1p = 1 and £1 = 100) but the amount value can be adjusted as desired  
