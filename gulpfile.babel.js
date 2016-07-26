@@ -135,6 +135,10 @@ function lint(files, options) {
 
 gulp.task('lint', lint(['app/scripts/*.js'] ));
 
+gulp.task('build', ['jade', 'styles', 'replace'], () => {
+  return;
+});
+
 // gulp.task('serve', ['styles', 'fonts'], () => {
 gulp.task('serve', ['jade', 'styles', 'replace'], () => {
   browserSync({
