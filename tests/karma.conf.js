@@ -24,14 +24,14 @@ module.exports = function(config) {
       '../bower_components/angular/angular.min.js',
       '../bower_components/angular-mocks/angular-mocks.js',
       '../bower_components/angular-hotkeys/build/hotkeys.min.js',
-      '../bower_components/angular-hotkeys/build/hotkeys.min.js',
+      '../bower_components/angular-toggle-switch/angular-toggle-switch.min.js',
       '../node_modules/jslinq/build/jslinq.min.js',
       '../node_modules/numeral/min/numeral.min.js',
       '../node_modules/numeral/min/languages/en-gb.min.js',
       '../app/scripts/directives/*.js',
       '../app/scripts/filters/*.js',
       '../app/scripts/controllers/*.js',
-      '../app/scripts/dist/app-min.js',
+      '../app/scripts/dist/app.js',
       '../tests/*.js'
     ],
 
