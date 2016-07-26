@@ -27,7 +27,7 @@ describe('Cashpoint.Controller', function () {
       $scope.locale = 'en-gb';
     }));
 
-    
+
 
     it('deposit() loads the float.json file again resetting the balance of available funds', inject(function ($http, $httpBackend) {
 
@@ -44,7 +44,7 @@ describe('Cashpoint.Controller', function () {
           $scope.valid = false;
         });
       };
-
+      $httpBackend.expectGET('templates/current-float.html').respond('a');
       $httpBackend.when('GET', '/data/float.json')
       .respond(200, { float: [ {'denomination': 1, 'amount': 100},
                     {'denomination': 2, 'amount': 100} ] });
@@ -56,11 +56,7 @@ describe('Cashpoint.Controller', function () {
       expect($scope.currentbalance).toBe(300);
     }));
 
-    // it('showHistoricalTransaction() check setting the current active transaction detail changes the index pointer correctly', function() {
-    //   $scope.transationtoshow = 0;
-    //   $scope.showHistoricalTransaction(1);
-    //   expect($scope.transationtoshow).toEqual(2);
-    // });
+
 
   });
 
