@@ -90,7 +90,7 @@ function cashPointController( $scope, $http, version, withdrawlpriortiy, priorit
     var bills = $scope.getAviailableDenominations(true);
     // console.log('bills', bills);
     var steppedback = false;
-      // console.log('index', $scope.withdrawlpriortiy, index);
+
     // the withdrawl algorithm impacts whether a given denomination whould be prioritised or just the fewest possible notes/coins. If we're running in least mode then use the entire float available. If we're in denomination priority mode then only allow the loop to count back from the index where the desired denomination exists
 
     var index = ( $scope.withdrawlpriortiy === 'least') ? bills.length - 1 : $scope.getPriorityIndex( $scope.prioritydenomination );
@@ -114,7 +114,7 @@ function cashPointController( $scope, $http, version, withdrawlpriortiy, priorit
 
           // deal with instances where there is available balance but requested withdrawl cant be made
           if( bills[index].denomination === 1 && a !== 0 ) {
-            throw ( new Error('Sorry - we cant provide that withdrawl amount. The float is ' + a + ' short' ) );
+            throw ( new Error('Sorry - we cant provide that withdrawal amount. The float is ' + a + ' short' ) );
           } else {
             // Should the app be running in denomination priority mode double check a larger denomination cant be used once all the available priority notes have been used
             if( $scope.withdrawlpriortiy !== 'least'

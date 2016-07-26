@@ -17,6 +17,8 @@ function keypad( $scope, hotkeys ) {
   hotkeys.add({ combo: 'enter', callback: function() { $scope.submit(); } });
   hotkeys.add({ combo: 'backspace', callback: function() { $scope.deleteValue(); } });
 
+  $scope.switchStatus = ( $scope.$parent.withdrawlpriortiy === 'denomination');
+
   $scope.reset = function() {
     // console.log('reset aaa');
     // console.log("amount", $scope.amount);

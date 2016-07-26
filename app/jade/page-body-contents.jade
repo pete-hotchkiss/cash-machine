@@ -11,7 +11,7 @@ div.application__canvas
         input(type="submit" value="Withdraw" ng-hide="currentbalance == 0").ui__button.ui__button--green
       button(ng-click="reset()").ui__button.ui__button--red Reset
       button(ng-click="depositFunds()" ng-show="currentbalance == 0").ui__button.ui__button--green Deposit Funds
-    div(toggle-switch ng-model="switchStatus" off-label="Minimum" on-label="Priority" ng-click="toggle(switchStatus)") 
+    div(toggle-switch ng-model="switchStatus" knob-label="Mode: " off-label="Minimum" on-label="Priority" ng-click="toggle(switchStatus)") 
   div.ui__container--right(ng-controller="transactions")
     div(ng-model="message" class="ui__message-field--{{ message.type | lowercase}}"  ng-class="{ 'visible': message.type, 'hidden': !message.type }").ui__message-field 
       h2 {{message.message}}
