@@ -48,6 +48,7 @@
     "karma": "^1.1.1",
     "karma-chrome-launcher": "^0.1.7",
     "karma-cli": "^1.0.1",
+    "karma-firefox-launcher": "^1.0.0",
     "karma-jasmine": "^0.3.5",
     "karma-jasmine-matchers": "^2.0.2",
     "karma-phantomjs-launcher": "^1.0.1",

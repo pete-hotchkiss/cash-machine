@@ -1,5 +1,6 @@
 // Karma configuration
 // Generated on Mon May 18 2015 13:35:51 GMT+0200 (CEST)
+'use strict';
 
 module.exports = function(config) {
   config.set({
@@ -69,7 +70,7 @@ module.exports = function(config) {
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
 
-    client: { captureConsole: true },
+    client: { captureConsole: false },
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher

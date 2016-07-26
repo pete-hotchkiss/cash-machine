@@ -1,4 +1,4 @@
-/* global angular, keypad, $parent, numeral, version, withdrawlpriortiy, prioritydenomination */
+/* global angular, keypad, $parent, numeral, version, withdrawlpriortiy, prioritydenomination, jslinq */
 'use strict';
 
 function cashPointController( $scope, $http, version, withdrawlpriortiy, prioritydenomination ) {
@@ -7,8 +7,8 @@ function cashPointController( $scope, $http, version, withdrawlpriortiy, priorit
       $scope.float = result.data.float;
       $scope.updateblance();
       console.log('Version: ', version);
-      console.log("withdrawl Mode:", withdrawlpriortiy);
-      console.log("priority Denomination:", prioritydenomination);
+      console.log('withdrawl Mode:', withdrawlpriortiy);
+      console.log('priority Denomination:', prioritydenomination);
   });
 
   // $scope.locale = 'en-gb';

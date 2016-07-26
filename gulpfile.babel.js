@@ -135,6 +135,10 @@ function lint(files, options) {
 
 gulp.task('lint', lint(['app/scripts/*.js'] ));
 
+gulp.task('build', ['jade', 'styles', 'replace'], () => {
+  return;
+});
+
 // gulp.task('serve', ['styles', 'fonts'], () => {
 gulp.task('serve', ['jade', 'styles', 'replace'], () => {
   browserSync({
@@ -168,6 +172,7 @@ gulp.task('serve', ['jade', 'styles', 'replace'], () => {
 
 // inject appropriate argumnet to switch build...
 gulp.task('replace', function(){
+  console.log("w", argz.w, argz.d);
   gulp.src(['app/scripts/app.js','app/scripts/controllers/*.js'])
     .pipe($.print())
     .pipe($.replace('##buildtype##', argz.w))

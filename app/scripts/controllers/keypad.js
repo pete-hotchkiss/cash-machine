@@ -20,9 +20,6 @@ function keypad( $scope, hotkeys ) {
   $scope.switchStatus = ( $scope.$parent.withdrawlpriortiy === 'denomination');
 
   $scope.reset = function() {
-    // console.log('reset aaa');
-    // console.log("amount", $scope.amount);
-    // $scope.$parent.displayvalue = $scope.$parent.formatAsCurrency( 0 );
     $scope.$parent.amount = 0;
     $scope.$parent.message = {};
   };
@@ -108,9 +105,9 @@ function keypad( $scope, hotkeys ) {
     // console.log("staus is: ", s, $scope.$parent.withdrawlpriortiy);
     // $scope.$parent.withdrawlpriortiy = ( s ) ? "least" : "denomination";
     // console.log( $scope.$parent.changeWithdrawlPriority, (s) ? "d" : "s" );
-    return $scope.$parent.changeWithdrawlPriority( (s) ? "d" : "s" );
+    return $scope.$parent.changeWithdrawlPriority( (s) ? 'd' : 's' );
     // return $scope.$parent.withdrawlpriortiy;
     // console.log("staus is: ", s, $scope.$parent.withdrawlpriortiy);
-  }
+  };
 
 }
