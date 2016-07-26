@@ -32,6 +32,8 @@ describe('Cashpoint.Controller', function () {
         $scope.valid = false;
       })
 
+      $httpBackend.whenGET('templates/current-float.html').respond('');
+
       $httpBackend.when('GET', '/data/float.json')
       .respond(200, { float: [ {"denomination": 1, "amount": 100},
                     {"denomination": 2, "amount": 100} ] });
