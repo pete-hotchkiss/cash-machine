@@ -94,6 +94,7 @@
   &--right {
     @include min-screen($screens-bigger-than-iphone) {
       flex-grow: 1;
+      margin-left: 16px
     }
   }
 }

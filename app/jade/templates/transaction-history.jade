@@ -1,0 +1,16 @@
+//- { "dest_path": "./app/templates" }
+div(ng-model="message" class="ui__message-field--{{ message.type | lowercase}}"  ng-class="{ 'visible': message.type, 'hidden': !message.type }").ui__message-field 
+  h2 {{message.message}}
+div(ng-model="transactions[transationtoshow]" ng-class="{ 'visible': transactions.length > 0, 'hidden': transactions.length == 0 }").ui__message-field.ui__message-field--mid-grey 
+  h3 Transaction Details:
+  div.ui__transaction__summary
+    div(ng-alias="transactions[transationtoshow] as i" transaction-summary).ui__transaction__summary--feature-item
+
+    div.ui__transaction__detail
+      div(ng-repeat="t in transactions[transationtoshow].withdrawldetail" class="ui__transaction__detail--item--{{ t.key}}").ui__transaction__detail--item 
+        p {{t.count}}
+  p #[strong Withdrawl: ] {{ transactions[0].breakdown.notes }} Notes ( {{ transactions[0].breakdown.notetotal | currency }} ) and {{ transactions[0].breakdown.coins }} Coins ( {{ transactions[0].breakdown.cointotal | currency }} )
+div(ng-model="transactions" ng-class="{ 'visible': transactions.length > 1, 'hidden': transactions.length < 2 }").ui__message-field.ui__message-field--light-grey
+  h4(ng-hide="transationtoshow == 0" ng-click="showHistoricalTransaction(-1)").ui__message__heading--right.show-cursor View Latest 
+  h3 Previous Transactions:
+  div(ng-repeat="i in transactions | limitTo: (1 - transactions.length)" ng-class="{ 'ui__transaction__summary--other-items--current': transationtoshow == $index + 1, 'odd': $odd, 'even': even }" transaction-summary).ui__transaction__summary--other-items
