@@ -11,8 +11,14 @@ div.application__canvas
         input(type="submit" value="Withdraw" ng-hide="currentbalance == 0").ui__button.ui__button--green.ui__element--beveled
       button(ng-click="reset()").ui__button.ui__button--red.ui__element--beveled Reset
       button(ng-click="depositFunds()" ng-show="currentbalance == 0").ui__button.ui__button--green.ui__element--beveled Deposit Funds
-    div.ui__block.ui__element--beveled
-      div(toggle-switch ng-model="switchStatus" knob-label="Mode:" off-label="Minimum" on-label="Priority" ng-click="toggle(switchStatus)").ui__toggle 
+    div.ui__container--flexbox.ui__container--flexbox--left
+      h4 Withdrawal Mode:
+      div.ui__block.ui__element--beveled
+        div(toggle-switch ng-model="switchStatus" knob-label="< >" off-label="Minimum" on-label="Priority" ng-click="toggle(switchStatus)").ui__toggle
+      div(ng-hide="switchStatus").ui__text-block
+        P Withdrawals will be returned using the smallest number of possible notes and coins.
+      div(ng-show="switchStatus" ng-control="cashPointController").ui__text-block
+        P Withdrawals will give priority to a defined denomination, and will return as many {{ prioritydenomination | currency }} as possible
   div.ui__container--right(ng-controller="transactions")
     div(ng-model="message" class="ui__message-field--{{ message.type | lowercase}}"  ng-class="{ 'visible': message.type, 'hidden': !message.type }").ui__message-field 
       h2 {{message.message}}

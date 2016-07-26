@@ -31,7 +31,16 @@
   @include display(flex);
   @include flex-wrap(wrap);
   @include flex-direction(row);
-  margin: 16px 0;
+  margin: 0;
+}
+
+.ui__text-block {
+  color: rgba(255,255,255, .75);
+  font-family: 'Fira Mono';
+  & p {
+    @include rem(font-size, 16px);
+    margin: 0;
+  }
 }
 
 .ui__element {
@@ -49,6 +58,19 @@
     @include flex-wrap(wrap);
     @include flex-direction(row);
     @include justify-content(center);
+
+    &--left {
+      @include justify-content(flex-start);
+    }
+
+    & h4 {
+      font-family: 'Fira Mono';
+      color: rgba(255,255,255, .65);
+      text-shadow: rgb(3, 3, 3) 0 1px 1px;
+      margin: 0;
+      font-weight: 400;
+      margin: 21px 0 0 0;
+    }
   }
 
   @include min-screen($toggle-to-rows) {
