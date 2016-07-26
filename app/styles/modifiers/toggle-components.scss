@@ -1,0 +1,32 @@
+.toggle-switch {
+  @include rem(font-size, 16px);
+  border: 0;
+  border-radius: 5px;
+  display: block;
+  font-family: 'Fira Mono';
+
+  & span {
+    padding-top: 8px;
+  }
+
+  & .knob {
+    background-color: #3a3e3d;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 43%, rgba(0, 0, 0, .1) 93%, rgba(0, 0, 0, .15) 100%);
+    color: rgba(255,255,255, .65);
+    // font-weight: 900;
+    border-left: 1px solid rgba(255,255,255, 0.3);
+    border-right: 1px solid rgba(255,255,255, 0.3);
+  }
+
+  & .switch-left,
+  & .switch-right {
+    background-color: #3a3e3d;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, .05) 0%, rgba(255, 255, 255, .05) 43%, rgba(255, 255, 255, .11) 93%, rgba(255, 255, 255, .1) 100%);
+    color: #fff;
+  }
+
+  & .switch-left {
+
+  }
+
+}

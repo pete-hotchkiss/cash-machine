@@ -3,7 +3,7 @@
 
 numeral.language('en-gb');
 
-angular.module('cashPointApp', ['cfp.hotkeys'])
+angular.module('cashPointApp', ['cfp.hotkeys', 'toggle-switch'])
   .value('version', 'v1.0.0')
   .value('withdrawlpriortiy', '##buildtype##')
   .value('prioritydenomination', Number('##priority-value##'))

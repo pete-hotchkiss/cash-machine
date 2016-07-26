@@ -17,6 +17,8 @@ function keypad( $scope, hotkeys ) {
   hotkeys.add({ combo: 'enter', callback: function() { $scope.submit(); } });
   hotkeys.add({ combo: 'backspace', callback: function() { $scope.deleteValue(); } });
 
+  $scope.switchStatus = ( $scope.$parent.withdrawlpriortiy === 'denomination');
+
   $scope.reset = function() {
     // console.log('reset aaa');
     // console.log("amount", $scope.amount);
@@ -101,5 +103,14 @@ function keypad( $scope, hotkeys ) {
     $scope.$parent.amount = ($scope.$parent.amount === 0 ) ? a : $scope.$parent.amount.toString() + a;
     // $scope.displayvalue = $scope.formatAsCurrency( $scope.amount );
   };
+
+  $scope.toggle = function( s ) {
+    // console.log("staus is: ", s, $scope.$parent.withdrawlpriortiy);
+    // $scope.$parent.withdrawlpriortiy = ( s ) ? "least" : "denomination";
+    // console.log( $scope.$parent.changeWithdrawlPriority, (s) ? "d" : "s" );
+    return $scope.$parent.changeWithdrawlPriority( (s) ? "d" : "s" );
+    // return $scope.$parent.withdrawlpriortiy;
+    // console.log("staus is: ", s, $scope.$parent.withdrawlpriortiy);
+  }
 
 }

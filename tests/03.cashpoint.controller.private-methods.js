@@ -80,7 +80,7 @@ describe('Cashpoint.Controller', function () {
     it('getRequestedWithdrawl() returns expected cash strucure', function() {
       // var $scope = {};
       // var controller = $controller('cashPointController', { $scope: $scope });
-
+      $scope.withdrawlpriortiy = 'least';
       $scope.float = [ {"denomination": 1, "amount": 100}, {"denomination": 2, "amount": 100}, {"denomination": 5, "amount": 100}, {"denomination": 10, "amount": 100}, {"denomination": 20, "amount": 100}, {"denomination": 50, "amount": 100}, {"denomination": 100, "amount": 100} ];
 
       expect($scope.getRequestedWithdrawl(238)).toEqual([100, 100, 20, 10, 5, 2, 1]);
@@ -90,17 +90,17 @@ describe('Cashpoint.Controller', function () {
     it('getRequestedWithdrawlCounts() returns expected counts of denominations', function() {
       // var $scope = {};
       // var controller = $controller('cashPointController', { $scope: $scope });
-
+      $scope.withdrawlpriortiy = 'least';
       $scope.float = [ {"denomination": 1, "amount": 100}, {"denomination": 2, "amount": 100}, {"denomination": 5, "amount": 100}, {"denomination": 10, "amount": 100}, {"denomination": 20, "amount": 100}, {"denomination": 50, "amount": 100}, {"denomination": 100, "amount": 100} ];
 
       expect($scope.getRequestedWithdrawlCounts( $scope.getRequestedWithdrawl(238))).toEqual([{ key: 100, count: 2, elements: [ 100, 100 ] }, { key: 20, count: 1, elements: [ 20 ] }, { key: 10, count: 1, elements: [ 10 ] }, { key: 5, count: 1, elements: [ 5 ] }, { key: 2, count: 1, elements: [ 2 ] }, { key: 1, count: 1, elements: [ 1 ] }]);
 
     })
-
+    //
     it('getWithdrawlCountsTypeCounts() returns expected counts of coins and notes', function() {
       // var $scope = {};
       // var controller = $controller('cashPointController', { $scope: $scope });
-
+      $scope.withdrawlpriortiy = 'least';
       $scope.float = [ {"denomination": 1, "amount": 100, type:"coin"}, {"denomination": 2, "amount": 100, type:"coin"}, {"denomination": 5, "amount": 100, type:"coin"}, {"denomination": 10, "amount": 100, type:"coin"}, {"denomination": 20, "amount": 100, type:"coin"}, {"denomination": 50, "amount": 100, type:"coin"}, {"denomination": 1000, "amount": 100, type:"note"} ];
 
       expect($scope.getWithdrawlCountsTypeCounts(2238)).toEqual(
@@ -108,19 +108,19 @@ describe('Cashpoint.Controller', function () {
       );
 
     })
-
-
-
+    //
+    //
+    //
     it('updateFloat() correctly reduces the number of demoninations items in the float ', function() {
       // var $scope = {};
       // var controller = $controller('cashPointController', { $scope: $scope });
-
+      $scope.withdrawlpriortiy = 'least';
       $scope.float = [ {"denomination": 1, "amount": 100, "type":"coin"}, {"denomination": 2, "amount": 100, "type":"coin"} ];
 
       expect($scope.updateFloat( [2,2,2,2,1] )).toEqual([ {"denomination": 1, "amount": 99, "type":"coin"}, {"denomination": 2, "amount": 96, "type":"coin"} ]);
 
     })
-
+    //
     it('changeWithdrawlPriority() ensure switching priority of withdrawl types sets expected values', function() {
       // var $scope = {};
       // var controller = $controller('cashPointController', { $scope: $scope });
@@ -134,7 +134,7 @@ describe('Cashpoint.Controller', function () {
       expect($scope.changeWithdrawlPriority('s')).toEqual('least')
 
     });
-
+    //
     it('changeWithdrawlPriority() ensure switching priority of withdrawl can only be set to valid types', function() {
       // var $scope = {};
       // var controller = $controller('cashPointController', { $scope: $scope });
