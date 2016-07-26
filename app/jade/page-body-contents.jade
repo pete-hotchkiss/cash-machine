@@ -2,16 +2,17 @@ h1 Cash Machine {{ version }} - {{ cashPointController.switchStatus }}
 div.application__canvas
   div.ui__container.ui__container--left(ng-controller="keypad")
     div.ui__keypad
-      div(ng-repeat="i in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]" data-key-value="{{i}}"  ng-click="buildvalue(i)").ui__button.ui__button--grey.ui__keypad__key.show-cursor {{i}}
-      div(ng-click="deleteValue()").ui__button.ui__button--grey.ui__keypad__key.show-cursor Del
+      div(ng-repeat="i in [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]" data-key-value="{{i}}"  ng-click="buildvalue(i)").ui__button.ui__element--beveled.ui__button--grey.ui__keypad__key.show-cursor {{i}}
+      div(ng-click="deleteValue()").ui__button.ui__element--beveled.ui__button--grey.ui__keypad__key.show-cursor Del
     div.ui__container--flexbox
       form(ng-submit="submit()" id="keypad").form__keypad
         div.form__ui__container
           input(type="text" id="withdrawlvalue" ng-model="amount" as-currency placeholder="Enter Withdrawl Amount").ui__display
-        input(type="submit" value="Withdraw" ng-hide="currentbalance == 0").ui__button.ui__button--green
-      button(ng-click="reset()").ui__button.ui__button--red Reset
-      button(ng-click="depositFunds()" ng-show="currentbalance == 0").ui__button.ui__button--green Deposit Funds
-    div(toggle-switch ng-model="switchStatus" knob-label="Mode: " off-label="Minimum" on-label="Priority" ng-click="toggle(switchStatus)") 
+        input(type="submit" value="Withdraw" ng-hide="currentbalance == 0").ui__button.ui__button--green.ui__element--beveled
+      button(ng-click="reset()").ui__button.ui__button--red.ui__element--beveled Reset
+      button(ng-click="depositFunds()" ng-show="currentbalance == 0").ui__button.ui__button--green.ui__element--beveled Deposit Funds
+    div.ui__block.ui__element--beveled
+      div(toggle-switch ng-model="switchStatus" knob-label="Mode:" off-label="Minimum" on-label="Priority" ng-click="toggle(switchStatus)").ui__toggle 
   div.ui__container--right(ng-controller="transactions")
     div(ng-model="message" class="ui__message-field--{{ message.type | lowercase}}"  ng-class="{ 'visible': message.type, 'hidden': !message.type }").ui__message-field 
       h2 {{message.message}}
