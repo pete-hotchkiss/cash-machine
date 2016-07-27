@@ -20,8 +20,10 @@ div.application__canvas
       div(ng-show="switchStatus" ng-control="cashPointController").ui__text-block
         P Withdrawals will give priority to a defined denomination, and will return as many {{ prioritydenomination | currency }} as possible
   div.ui__container--right
-    div.ui__container--flexbox
-      div #[a(ui-sref="home") Current Float]
-      div #[a(ui-sref="transaction-history") Transaction History]
+    div.ui__container--flexbox.ui__navigation-block
+      a(ui-sref="home" ui-sref-active="active")
+        div.ui__navigation__item Current Float
+      a(ui-sref="transaction-history" ui-sref-active="active") 
+        div.ui__navigation__item Transaction History
     div(ui-view)
     
