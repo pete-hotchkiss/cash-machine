@@ -27,6 +27,8 @@ module.exports = function(config) {
       '../bower_components/angular-hotkeys/build/hotkeys.min.js',
       '../bower_components/angular-toggle-switch/angular-toggle-switch.min.js',
       '../bower_components/angular-ui-router/release/angular-ui-router.min.js',
+      '../node_modules/chart.js/dist/Chart.min.js',
+      '../node_modules/angular-chart.js/dist/angular-chart.min.js',
       '../node_modules/jslinq/build/jslinq.min.js',
       '../node_modules/numeral/min/numeral.min.js',
       '../node_modules/numeral/min/languages/en-gb.min.js',

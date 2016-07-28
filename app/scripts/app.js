@@ -3,7 +3,7 @@
 
 numeral.language('en-gb');
 
-angular.module('cashPointApp', ['cfp.hotkeys', 'toggle-switch', 'ui.router'])
+angular.module('cashPointApp', ['cfp.hotkeys', 'toggle-switch', 'ui.router', 'chart.js'])
   .factory('Global', function(){
     return { transactions: [] };
   })
