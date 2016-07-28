@@ -35,7 +35,7 @@ angular.module('cashPointApp', ['cfp.hotkeys', 'toggle-switch', 'ui.router', 'ch
   .controller('keypad', ['$scope', 'hotkeys', keypad ])
   .controller('transactions', ['$scope', transactions])
   // .controller('LineCtrl', charting)
-  .controller('charting', ['$scope', charting])
+  .controller('charting', ['$scope', 'Global', charting])
   .directive('ngAlias', ngAlias )
   .directive('asCurrency', asCurrency )
   .directive('transactionSummary', function() {

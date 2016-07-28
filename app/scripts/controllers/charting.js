@@ -1,12 +1,56 @@
 /* global angular, keypad, $parent, numeral, version, withdrawlpriortiy, prioritydenomination, jslinq */
 'use strict';
 
-function charting ($scope) {
-    console.log("transactions: ", $scope.$parent.transactions);
-    $scope.labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+function charting ($scope, Global ) {
+    // console.log("transactions: ", $scope.$parent.transactions);
+    $scope.transactions = Global.transactions;
+    // console.log($scope.getHistoricalTimeStamps);
+    // $scope.labels = $scope.getHistoricalTimeStamps();
+
+
+    /**
+        Returns array of rolling balances
+    */
+    $scope.getHistoricalBalances = function() {
+      return jslinq( $scope.transactions )
+      .select( function(e) { return e.balance; })
+      .toList().reverse();
+    }
+
+    $scope.getHistoricalAmounts = function() {
+      return jslinq( $scope.transactions )
+      .select( function(e) { return e.amount; })
+      .toList().reverse();
+    }
+
+    $scope.getHistoricalTimeStamps = function() {
+      return jslinq( $scope.transactions )
+      .select( function(e) { return e.timestamp; })
+      .toList().reverse();
+      // return ['January', 'Bebruary', 'March', 'April', 'May', 'June', 'July'];
+    }
+
+    $scope.$watch( function() { return Global.transactions}, function(nv, ov) {
+        console.log("change:", nv, ov, nv !== ov);
+        if( nv !== ov ) {
+          console.log('it changed');
+          $scope.transactions = Global.transactions;
+          $scope.bubbleUpdates();
+        }
+    }, true);
+
+    $scope.bubbleUpdates = function() {
+      $scope.labels = $scope.getHistoricalTimeStamps();
+      $scope.data = [
+        $scope.getHistoricalBalances(),
+        $scope.getHistoricalAmounts()
+      ];
+    }
+
+    $scope.labels = $scope.getHistoricalTimeStamps();
     $scope.data = [
-      [65, 59, 80, 81, 56, 55, 40],
-      [28, 48, 40, 19, 86, 27, 90]
+      $scope.getHistoricalBalances(),
+      $scope.getHistoricalAmounts()
     ];
     $scope.foo = "foo foo";
     $scope.colors = [
@@ -27,8 +71,9 @@ function charting ($scope) {
         pointHoverBorderColor: 'rgba(77,83,96,0.8)'
       }
     ];
-    $scope.options = { legend: { display: false } };
+    $scope.options = { legend: { display: true } };
     $scope.randomize = function () {
+      console.log('random');
       $scope.data = $scope.data.map(function (data) {
         return data.map(function (y) {
           y = y + Math.random() * 10 - 5;

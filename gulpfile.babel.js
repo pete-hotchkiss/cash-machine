@@ -157,10 +157,7 @@ gulp.task('serve', ['jade', 'styles', 'replace'], () => {
 
   gulp.watch('app/styles/**/*.scss', ['styles']);
   gulp.watch('app/scripts/*.js', ['replace']);
-<<<<<<< HEAD
   gulp.watch('app/scripts/controllers/*.js', ['replace']);
-=======
->>>>>>> 9381ad7... chart.js instance added in new view state (#17)
   // gulp.watch('bower.json', ['wiredep', 'fonts']);
   // gulp.watch('app/jade/**/*.jade', ['jade']);
   gulp.watch('app/jade/**/*.jade', ['jade'])
