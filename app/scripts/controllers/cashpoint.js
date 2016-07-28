@@ -1,7 +1,7 @@
 /* global angular, keypad, $parent, numeral, version, withdrawlpriortiy, prioritydenomination, jslinq */
 'use strict';
 
-function cashPointController( $scope, $http, version, withdrawlpriortiy, prioritydenomination ) {
+function cashPointController( $scope, $http, version, withdrawlpriortiy, prioritydenomination, Global ) {
 
   $http.get('/data/float.json').then( function(result) {
       $scope.float = result.data.float;
@@ -9,11 +9,13 @@ function cashPointController( $scope, $http, version, withdrawlpriortiy, priorit
       console.log('Version: ', version);
       console.log('withdrawl Mode:', withdrawlpriortiy);
       console.log('priority Denomination:', prioritydenomination);
+      console.log('Transactions: ', $scope.transactions);
   });
-
+ 
   // $scope.locale = 'en-gb';
   $scope.currentbalance = -1;
-  $scope.transactions = []; // to hold transactional history
+  $scope.transactions = Global.transactions; // to hold transactional history
+  // $scope.transactions = []; // to hold transactional history
   $scope.displayvalue = 0;
   $scope.amount = 0;
   $scope.message = {};

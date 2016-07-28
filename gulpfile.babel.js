@@ -156,7 +156,8 @@ gulp.task('serve', ['jade', 'styles', 'replace'], () => {
   });
 
   gulp.watch('app/styles/**/*.scss', ['styles']);
-  gulp.watch('app/scripts/**/*.js', ['replace']);
+  gulp.watch('app/scripts/*.js', ['replace']);
+  gulp.watch('app/scripts/controllers/*.js', ['replace']);
   // gulp.watch('bower.json', ['wiredep', 'fonts']);
   // gulp.watch('app/jade/**/*.jade', ['jade']);
   gulp.watch('app/jade/**/*.jade', ['jade'])

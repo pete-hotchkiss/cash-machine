@@ -1,9 +1,12 @@
-/* global angular, jslinq, numeral, ngAlias, asCurrency, currency, transactions, keypad, cashPointController */
+/* global angular, jslinq, numeral, ngAlias, asCurrency, currency, transactions, keypad, cashPointController, Transactions */
 'use strict';
 
 numeral.language('en-gb');
 
 angular.module('cashPointApp', ['cfp.hotkeys', 'toggle-switch', 'ui.router'])
+  .factory('Global', function(){
+    return { transactions: [] };
+  })
   .config(function($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise('/');
@@ -22,7 +25,7 @@ angular.module('cashPointApp', ['cfp.hotkeys', 'toggle-switch', 'ui.router'])
   .value('version', 'v1.0.0')
   .value('withdrawlpriortiy', '##buildtype##')
   .value('prioritydenomination', Number('##priority-value##'))
-  .controller('cashPointController', ['$scope', '$http', 'version', 'withdrawlpriortiy', 'prioritydenomination', cashPointController])
+  .controller('cashPointController', ['$scope', '$http', 'version', 'withdrawlpriortiy', 'prioritydenomination', 'Global', cashPointController])
   .controller('keypad', ['$scope', 'hotkeys', keypad ])
   .controller('transactions', ['$scope', transactions])
   .directive('ngAlias', ngAlias )
