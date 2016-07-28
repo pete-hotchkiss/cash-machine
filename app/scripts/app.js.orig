@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+/* global angular, jslinq, numeral, ngAlias, asCurrency, currency, transactions, keypad, cashPointController, Transactions */
+=======
 /* global angular, jslinq, numeral, ngAlias, asCurrency, currency, transactions, keypad, cashPointController, charting */
+>>>>>>> 9381ad7... chart.js instance added in new view state (#17)
 'use strict';
 
 numeral.language('en-gb');
