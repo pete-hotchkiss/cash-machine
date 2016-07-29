@@ -73,7 +73,7 @@ function charting ($scope, Global ) {
       $scope.getHistoricalBalances(),
       $scope.getHistoricalAmounts()
     ];
-
+    $scope.series = [ 'Balance', 'Withdrawal Amount' ];
     $scope.colors = [
       { // grey
         backgroundColor: 'rgba(148,159,177,0.2)',
