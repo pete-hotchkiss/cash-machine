@@ -123,7 +123,7 @@ function charting ($scope, Global ) {
           ticks: {
             callback: function(label, index, labels) {
               var fn = window['currency'];
-              if(typeof fn === 'function') { return fn()(label); }
+              if(typeof fn === 'function') { return fn()(label, false); }
             }
           }
       }]
