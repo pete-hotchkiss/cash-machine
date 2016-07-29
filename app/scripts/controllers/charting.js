@@ -1,5 +1,19 @@
 /* global angular, keypad, $parent, numeral, version, withdrawlpriortiy, currency, prioritydenomination, jslinq */
 'use strict';
+// console.log('charts.types.line', Chart.types.Line);
+// Chart.types.Line.extend({
+//     name: "LineAlt",
+//     initialize: function (data) {
+//         console.log("iit");
+//         Chart.types.Line.prototype.initialize.apply(this, arguments);
+//         var xLabels = this.scale.xLabels
+//         xLabels.forEach(function (label, i) {
+//             if (i % 2 == 1)
+//                 xLabels[i] = '';
+//         })
+//     }
+// });
+
 
 function charting ($scope, Global ) {
     // console.log("transactions: ", $scope.$parent.transactions);
@@ -30,6 +44,14 @@ function charting ($scope, Global ) {
       // return ['January', 'Bebruary', 'March', 'April', 'May', 'June', 'July'];
     }
 
+    $scope.getFirstTimeStamp = function() {
+      return $scope.getHistoricalTimeStamps()[0];
+    }
+
+    $scope.getLastTimeStamp = function() {
+      return $scope.getHistoricalTimeStamps()[ $scope.getHistoricalTimeStamps().length - 1];
+    }
+
     $scope.$watch( function() { return Global.transactions}, function(nv, ov) {
         if( nv !== ov ) {
           $scope.transactions = Global.transactions;
@@ -46,11 +68,12 @@ function charting ($scope, Global ) {
     }
 
     $scope.labels = $scope.getHistoricalTimeStamps();
+
     $scope.data = [
       $scope.getHistoricalBalances(),
       $scope.getHistoricalAmounts()
     ];
-    $scope.foo = "foo foo";
+
     $scope.colors = [
       { // grey
         backgroundColor: 'rgba(148,159,177,0.2)',
@@ -71,7 +94,7 @@ function charting ($scope, Global ) {
     ];
     $scope.options = { legend: { display: true }
     ,
-
+    showXLabels: 5,
     scales: {
       xAxes: [{
           display: true,
@@ -80,6 +103,11 @@ function charting ($scope, Global ) {
             labelString: 'Time & Date'
           },
           ticks: {
+            maxRotation: 0,
+            max: $scope.getLastTimeStamp(),
+            min: $scope.getFirstTimeStamp(),
+            // stepSize: 5000,
+            maxTicksLimit: 5,
             callback: function(label, index, labels) {
               var fn = window['formateddate'];
               if(typeof fn === 'function') { return fn()(label, 'LTS'); }
