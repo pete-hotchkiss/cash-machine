@@ -31,9 +31,7 @@ function charting ($scope, Global ) {
     }
 
     $scope.$watch( function() { return Global.transactions}, function(nv, ov) {
-        console.log("change:", nv, ov, nv !== ov);
         if( nv !== ov ) {
-          console.log('it changed');
           $scope.transactions = Global.transactions;
           $scope.bubbleUpdates();
         }
@@ -80,6 +78,12 @@ function charting ($scope, Global ) {
           scaleLabel: {
             display: true,
             labelString: 'Time & Date'
+          },
+          ticks: {
+            callback: function(label, index, labels) {
+              var fn = window['formateddate'];
+              if(typeof fn === 'function') { return fn()(label, 'LTS'); }
+            }
           }
       }],
       yAxes: [{
