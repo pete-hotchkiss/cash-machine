@@ -1,6 +1,5 @@
 (function (angular) {
     var app = angular.module('app', []);
-    console.log(asCurrency);
     app.directive("asCurrency", asCurrency );
 
 })(angular);

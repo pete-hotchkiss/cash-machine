@@ -45,7 +45,6 @@ angular.module('cashPointApp', ['cfp.hotkeys', 'toggle-switch', 'ui.router', 'ch
   .controller('cashPointController', ['$scope', '$http', 'version', 'withdrawlpriortiy', 'prioritydenomination', 'Global', cashPointController])
   .controller('keypad', ['$scope', 'hotkeys', keypad ])
   .controller('transactions', ['$scope', transactions])
-  // .controller('LineCtrl', charting)
   .controller('charting', ['$scope', 'Global', charting])
   .directive('ngAlias', ngAlias )
   .directive('asCurrency', asCurrency )
@@ -54,4 +53,5 @@ angular.module('cashPointApp', ['cfp.hotkeys', 'toggle-switch', 'ui.router', 'ch
       templateUrl: 'templates/transaction-summary.html'
     };
   })
-  .filter('currency', currency );
+  .filter('currency', currency )
+  .filter('formateddate', formateddate );
