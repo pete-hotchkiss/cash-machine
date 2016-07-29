@@ -29,30 +29,30 @@ function charting ($scope, Global ) {
       return jslinq( $scope.transactions )
       .select( function(e) { return e.balance; })
       .toList().reverse();
-    }
+    };
 
     $scope.getHistoricalAmounts = function() {
       return jslinq( $scope.transactions )
       .select( function(e) { return e.amount; })
       .toList().reverse();
-    }
+    };
 
     $scope.getHistoricalTimeStamps = function() {
       return jslinq( $scope.transactions )
       .select( function(e) { return e.timestamp; })
       .toList().reverse();
       // return ['January', 'Bebruary', 'March', 'April', 'May', 'June', 'July'];
-    }
+    };
 
     $scope.getFirstTimeStamp = function() {
       return $scope.getHistoricalTimeStamps()[0];
-    }
+    };
 
     $scope.getLastTimeStamp = function() {
       return $scope.getHistoricalTimeStamps()[ $scope.getHistoricalTimeStamps().length - 1];
-    }
+    };
 
-    $scope.$watch( function() { return Global.transactions}, function(nv, ov) {
+    $scope.$watch( function() { return Global.transactions; }, function( nv, ov ) {
         if( nv !== ov ) {
           $scope.transactions = Global.transactions;
           $scope.bubbleUpdates();
@@ -127,6 +127,21 @@ function charting ($scope, Global ) {
             }
           }
       }]
+    },
+    tooltips: {
+      callbacks: {
+        // tooltipItem is an object containing some information about the item that this label is for (item that will show in tooltip).
+        // data : the chart data item containing all of the datasets
+        // label: function(tooltipItem, data) {
+        //
+        //   return data.labels[tooltipItem.index] + ' ' + data.datasets[0].data[tooltipItem.index];
+        // }
+        label: function (t,e){
+          var fn = window['currency'];
+          var a=e.datasets[t.datasetIndex].label||"";
+          return a + ": " + fn()( t.yLabel );
+          }
+      }
     }
    };
 
