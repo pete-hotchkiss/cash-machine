@@ -1,6 +1,17 @@
 /* global angular, jslinq, numeral, ngAlias, asCurrency, currency, transactions, keypad, cashPointController, charting */
 'use strict';
 
+// Chart.defaults.scale.ticks.callback = function(label, name){
+//   // console.log('formatting' + ' >> ' + name);
+//   console.log(arguments);
+//   // return "£"+label.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+//   // callback: function(label, index, labels) {
+//     return '£' + label ;
+//   // }
+//
+// };
+
+
 numeral.language('en-gb');
 
 angular.module('cashPointApp', ['cfp.hotkeys', 'toggle-switch', 'ui.router', 'chart.js'])

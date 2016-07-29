@@ -1,4 +1,4 @@
-/* global angular, keypad, $parent, numeral, version, withdrawlpriortiy, prioritydenomination, jslinq */
+/* global angular, keypad, $parent, numeral, version, withdrawlpriortiy, currency, prioritydenomination, jslinq */
 'use strict';
 
 function charting ($scope, Global ) {
@@ -71,9 +71,34 @@ function charting ($scope, Global ) {
         pointHoverBorderColor: 'rgba(77,83,96,0.8)'
       }
     ];
-    $scope.options = { legend: { display: true } };
-    $scope.randomize = function () {
-      console.log('random');
+    $scope.options = { legend: { display: true }
+    ,
+
+    scales: {
+      xAxes: [{
+          display: true,
+          scaleLabel: {
+            display: true,
+            labelString: 'Time & Date'
+          }
+      }],
+      yAxes: [{
+          display: true,
+          scaleLabel: {
+            display: true,
+            labelString: 'Amount'
+          },
+          ticks: {
+            callback: function(label, index, labels) {
+              var fn = window['currency'];
+              if(typeof fn === 'function') { return fn()(label); }
+            }
+          }
+      }]
+    }
+   };
+
+  $scope.randomize = function () {
       $scope.data = $scope.data.map(function (data) {
         return data.map(function (y) {
           y = y + Math.random() * 10 - 5;
