@@ -1,9 +1,20 @@
-/* global angular, jslinq, numeral, ngAlias, asCurrency, currency, transactions, keypad, cashPointController, Transactions */
+/* global angular, jslinq, numeral, ngAlias, asCurrency, currency, transactions, keypad, cashPointController, charting */
 'use strict';
+
+// Chart.defaults.scale.ticks.callback = function(label, name){
+//   // console.log('formatting' + ' >> ' + name);
+//   console.log(arguments);
+//   // return "£"+label.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+//   // callback: function(label, index, labels) {
+//     return '£' + label ;
+//   // }
+//
+// };
+
 
 numeral.language('en-gb');
 
-angular.module('cashPointApp', ['cfp.hotkeys', 'toggle-switch', 'ui.router'])
+angular.module('cashPointApp', ['cfp.hotkeys', 'toggle-switch', 'ui.router', 'chart.js'])
   .factory('Global', function(){
     return { transactions: [] };
   })
@@ -21,6 +32,12 @@ angular.module('cashPointApp', ['cfp.hotkeys', 'toggle-switch', 'ui.router'])
       templateUrl: 'templates/transaction-history.html',
       controller: 'transactions'
     });
+
+    $stateProvider.state('transaction-charting', {
+      url: '/transaction-charting',
+      templateUrl: 'templates/transaction-charting.html',
+      controller: 'charting'
+    });
   })
   .value('version', 'v1.0.0')
   .value('withdrawlpriortiy', '##buildtype##')
@@ -28,6 +45,7 @@ angular.module('cashPointApp', ['cfp.hotkeys', 'toggle-switch', 'ui.router'])
   .controller('cashPointController', ['$scope', '$http', 'version', 'withdrawlpriortiy', 'prioritydenomination', 'Global', cashPointController])
   .controller('keypad', ['$scope', 'hotkeys', keypad ])
   .controller('transactions', ['$scope', transactions])
+  .controller('charting', ['$scope', 'Global', charting])
   .directive('ngAlias', ngAlias )
   .directive('asCurrency', asCurrency )
   .directive('transactionSummary', function() {
@@ -35,4 +53,5 @@ angular.module('cashPointApp', ['cfp.hotkeys', 'toggle-switch', 'ui.router'])
       templateUrl: 'templates/transaction-summary.html'
     };
   })
-  .filter('currency', currency );
+  .filter('currency', currency )
+  .filter('formateddate', formateddate );

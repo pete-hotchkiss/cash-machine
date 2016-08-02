@@ -90,7 +90,7 @@ gulp.task('jade', function(cb) {
   const props = $.vinylProperties(['path, contents']);
 
   //
-  return gulp.src(['./app/jade/index.jade', './app/jade/js-buildouts/*.jade', './app/jade/templates/*.jade'])
+  return gulp.src(['./app/jade/index.jade', './app/jade/js-buildouts/*.jade', './app/jade/templates/*.jade', './app/jade/chart.jade'])
     // .pipe( $.if( argz.v, $.print()))
     .pipe( $.intercept( function(file) {
         //  Read the first line of the Jade file for any local, file level settings
