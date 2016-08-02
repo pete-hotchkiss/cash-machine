@@ -1,19 +1,16 @@
 /* global angular, keypad, $parent, numeral, version, withdrawlpriortiy, currency, prioritydenomination, jslinq */
 'use strict';
-// console.log('charts.types.line', Chart.types.Line);
-// Chart.types.Line.extend({
-//     name: "LineAlt",
-//     initialize: function (data) {
-//         console.log("iit");
-//         Chart.types.Line.prototype.initialize.apply(this, arguments);
-//         var xLabels = this.scale.xLabels
-//         xLabels.forEach(function (label, i) {
-//             if (i % 2 == 1)
-//                 xLabels[i] = '';
-//         })
-//     }
-// });
 
+// Chart.defaults.global.elements.line.fill = false;
+Chart.defaults.global.elements.point.radius = 5;
+Chart.defaults.global.elements.point.borderWidth = 2;
+Chart.defaults.global.defaultFontFamily = 'Fira Mono';
+// Chart.defaults.global.defaultFontFamily
+
+
+(function (ChartJsProvider) {
+  ChartJsProvider.setOptions({ colors: [ '#803690', '#00ADF9', '#DCDCDC', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'] });
+});
 
 function charting ($scope, Global ) {
     // console.log("transactions: ", $scope.$parent.transactions);
@@ -65,7 +62,7 @@ function charting ($scope, Global ) {
         $scope.getHistoricalBalances(),
         $scope.getHistoricalAmounts()
       ];
-    }
+    };
 
     $scope.labels = $scope.getHistoricalTimeStamps();
 
@@ -74,30 +71,37 @@ function charting ($scope, Global ) {
       $scope.getHistoricalAmounts()
     ];
     $scope.series = [ 'Balance', 'Withdrawal Amount' ];
-    $scope.colors = [
-      { // grey
-        backgroundColor: 'rgba(148,159,177,0.2)',
-        pointBackgroundColor: 'rgba(148,159,177,1)',
-        pointHoverBackgroundColor: 'rgba(148,159,177,1)',
-        borderColor: 'rgba(148,159,177,1)',
-        pointBorderColor: '#fff',
-        pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-      },
-      { // dark grey
-        backgroundColor: 'rgba(77,83,96,0.2)',
-        pointBackgroundColor: 'rgba(77,83,96,1)',
-        pointHoverBackgroundColor: 'rgba(77,83,96,1)',
-        borderColor: 'rgba(77,83,96,1)',
-        pointBorderColor: '#fff',
-        pointHoverBorderColor: 'rgba(77,83,96,0.8)'
-      }
-    ];
-    $scope.options = { legend: { display: true }
-    ,
+    $scope.colots = ['#F7464A', '#FDB45C'];
+    // $scope.colors = [
+    //   { // grey
+    //     // backgroundColor: 'rgba(148,159,177,0.2)',
+    //     pointBackgroundColor: 'rgba(148,159,177,1)',
+    //     pointHoverBackgroundColor: 'rgba(148,159,177,1)',
+    //     borderColor: 'rgba(148,159,177,1)',
+    //     pointBorderColor: '#fff',
+    //     pointHoverBorderColor: 'rgba(148,159,177,0.8)',
+    //     borderDash: [5,10]
+    //   },
+    //   { // dark grey
+    //     backgroundColor: 'rgba(77,83,96,0.2)',
+    //     pointBackgroundColor: 'rgba(77,83,96,1)',
+    //     pointHoverBackgroundColor: 'rgba(77,83,96,1)',
+    //     borderColor: 'rgba(77,83,96,1)',
+    //     pointBorderColor: '#fff',
+    //     pointHoverBorderColor: 'rgba(77,83,96,0.8)',
+    //     borderDash: [5,10],
+    //     radius: 10
+    //   }
+    // ];
+    $scope.options = { legend: { display: true },
     showXLabels: 5,
+    animation: false,
     scales: {
       xAxes: [{
           display: true,
+          gridLines: {
+            display: true
+          },
           scaleLabel: {
             display: true,
             labelString: 'Time & Date'
@@ -116,6 +120,9 @@ function charting ($scope, Global ) {
       }],
       yAxes: [{
           display: true,
+          gridLines: {
+            display: false
+          },
           scaleLabel: {
             display: true,
             labelString: 'Amount'
@@ -130,12 +137,6 @@ function charting ($scope, Global ) {
     },
     tooltips: {
       callbacks: {
-        // tooltipItem is an object containing some information about the item that this label is for (item that will show in tooltip).
-        // data : the chart data item containing all of the datasets
-        // label: function(tooltipItem, data) {
-        //
-        //   return data.labels[tooltipItem.index] + ' ' + data.datasets[0].data[tooltipItem.index];
-        // }
         label: function (t,e){
           var fn = window['currency'];
           var a=e.datasets[t.datasetIndex].label||"";
