@@ -117,5 +117,6 @@
   angular.module('cashPointApp')
     .controller('keypad', ['$scope', 'hotkeys', keypad ]);
 
+  console.log('karma', keypad);
 
 })();
