@@ -1,5 +1,5 @@
 /* global angular, jslinq, numeral, ngAlias, asCurrency, currency, transactions, keypad, cashPointController, charting */
-'use strict';
+// 'use strict';
 
 // Chart.defaults.scale.ticks.callback = function(label, name){
 //   // console.log('formatting' + ' >> ' + name);
@@ -13,6 +13,10 @@
 
 
 numeral.language('en-gb');
+
+(function() {
+    'use strict';
+
 
 angular.module('cashPointApp', ['cfp.hotkeys', 'toggle-switch', 'ui.router', 'chart.js'])
   .factory('Global', function(){
@@ -42,16 +46,17 @@ angular.module('cashPointApp', ['cfp.hotkeys', 'toggle-switch', 'ui.router', 'ch
   .value('version', 'v1.0.0')
   .value('withdrawlpriortiy', '##buildtype##')
   .value('prioritydenomination', Number('##priority-value##'))
-  .controller('cashPointController', ['$scope', '$http', 'version', 'withdrawlpriortiy', 'prioritydenomination', 'Global', cashPointController])
-  .controller('keypad', ['$scope', 'hotkeys', keypad ])
-  .controller('transactions', ['$scope', transactions])
-  .controller('charting', ['$scope', 'Global', charting])
-  .directive('ngAlias', ngAlias )
-  .directive('asCurrency', asCurrency )
-  .directive('transactionSummary', function() {
-    return {
-      templateUrl: 'templates/transaction-summary.html'
-    };
-  })
-  .filter('currency', currency )
-  .filter('formateddate', formateddate );
+  // .controller('cashPointController', ['$scope', '$http', 'version', 'withdrawlpriortiy', 'prioritydenomination', 'Global', cashPointController])
+  // .controller('keypad', ['$scope', 'hotkeys', keypad ])
+  // .controller('transactions', ['$scope', transactions])
+  // .controller('charting', ['$scope', 'Global', charting])
+  // .directive('ngAlias', ngAlias )
+  // .directive('asCurrency', asCurrency )
+  // .directive('transactionSummary', function() {
+    // return {
+      // templateUrl: 'templates/transaction-summary.html'
+    // };
+  // })
+  // .filter('currency', currency )
+  // .filter('formateddate', formateddate );
+})();

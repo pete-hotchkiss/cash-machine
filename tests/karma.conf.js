@@ -33,10 +33,11 @@ module.exports = function(config) {
       '../node_modules/jslinq/build/jslinq.min.js',
       '../node_modules/numeral/min/numeral.min.js',
       '../node_modules/numeral/min/languages/en-gb.min.js',
+      '../app/scripts/dist/app.js',
       '../app/scripts/directives/*.js',
       '../app/scripts/filters/*.js',
       '../app/scripts/controllers/*.js',
-      '../app/scripts/dist/app.js',
+
       '../tests/*.js'
     ],
 

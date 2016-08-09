@@ -1,6 +1,6 @@
 describe('Cashpoint.Controller', function () {
 
-  beforeEach(module('cashPointApp'));
+  beforeEach( module('cashPointApp') );
 
   var $controller, httpBackend;
 
