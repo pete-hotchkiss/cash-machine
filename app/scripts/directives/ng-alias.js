@@ -1,6 +1,9 @@
-'use strict';
+/* global angular */
+(function() {
 
-function ngAlias($compile) {
+  'use strict';
+
+  function ngAlias($compile) {
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
@@ -11,3 +14,7 @@ function ngAlias($compile) {
         }
     };
   }
+
+  angular.module('cashPointApp')
+    .directive('ngAlias', ngAlias );
+})();
