@@ -1,8 +1,12 @@
+/* global angular */
+
 (function (angular) {
     var app = angular.module('app', []);
-    app.directive("asCurrency", asCurrency );
+    app.directive("asCurrency", asCurrency.map );
 
 })(angular);
+
+
 
 describe('CashPointDirective', function () {
     var directiveDefinitionObject;
@@ -29,7 +33,7 @@ describe('CashPointDirective', function () {
         it('compiles', function () {
             expect(element[0]).toEqual(jasmine.any(Object));
         });
-
+        //
         it('passed numerical values are formatted as expected currency', function() {
           // console.log( "function", scope.formatAsCurrency );
           expect( scope.formatAsCurrency(0)).toBe('£0.00');
