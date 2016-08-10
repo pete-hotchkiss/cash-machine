@@ -1,6 +1,4 @@
 //- { "dest_path": "./app/templates" }
-div(ng-model="message" class="ui__message-field--{{ message.type | lowercase}}"  ng-class="{ 'visible': message.type, 'hidden': !message.type }").ui__message-field 
-  h2 {{message.message}}
 div(ng-model="transactions[transationtoshow]" ng-class="{ 'visible': transactions.length > 0, 'hidden': transactions.length == 0 }").ui__message-field.ui__message-field--mid-grey 
   h3 Transaction Details:
   div.ui__transaction__summary
