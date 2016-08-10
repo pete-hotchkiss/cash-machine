@@ -26,6 +26,7 @@ var asCurrency = (function() {
 
   console.log('asCurrency', asCurrency);
 
+  // provides interfaces into the class. Largely only needed for testing 
   var api = { map: asCurrency };
   return api;
 
