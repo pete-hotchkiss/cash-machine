@@ -27,4 +27,6 @@ div.application__canvas
         div.ui__navigation__item Transaction History
       a(ui-sref="transaction-charting" ui-sref-active="active") 
         div.ui__navigation__item Charting
+    div(ng-model="message" class="ui__message-field--{{ message.type | lowercase}}"  ng-class="{ 'visible': message.type, 'hidden': !message.type }").ui__message-field.ui__message-field--status-bar 
+      h2 {{message.message}}
     div(ui-view)

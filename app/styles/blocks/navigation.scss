@@ -20,6 +20,9 @@
     border-radius: 5px 5px 0 0;
     background-color: #e7e175;
     border-bottom: 0;
+    height: 63px;
+    z-index: 2;
+    position: relative;
     // padding: 6px;
     & a {
       text-decoration: none;

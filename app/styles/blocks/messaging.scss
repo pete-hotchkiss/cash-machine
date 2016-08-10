@@ -7,11 +7,17 @@
     // max-width: 307px
   }
 
+  &--status-bar {
+    left: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+  }
+
   color: #eee;
   font-family: 'Fira Mono';
   text-shadow: -1px 1px 1px rgba(255,255,255,.5), 0 0 0 #000, 1px 1px 1px rgba(255,255,255,.5);
-  position: relative;
-  // width: 100%;
 
   @include min-screen($screens-bigger-than-iphone) {
     // margin-left: 16px;
@@ -19,7 +25,7 @@
 
   padding: 16px;
   opacity: 0;
-  transition: opacity .45s ease-in-out;
+  transition: opacity .45s ease-in-out, top .35s ease-in-out;
 
   & h2, & h3, & h4 {
     @include rem(font-size, 20px);
@@ -35,6 +41,10 @@
     color: #842332;
     border-left: 4px solid #842332;
     opacity: 1;
+  }
+
+  &.visible {
+    top: 63px;
   }
 
   &--sucsess {
