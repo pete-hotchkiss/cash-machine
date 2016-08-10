@@ -26,6 +26,16 @@
       $scope.$parent.message = {};
     };
 
+
+    $scope.sendMessage = function( o ) {
+      $scope.$parent.message = o;
+
+      setTimeout( function() {
+        $scope.$parent.message = {};
+        angular.element( document.querySelector( '.ui__message-field--status-bar' ) ).removeClass('visible').addClass('hidden');
+       }, 3000);
+    };
+
     /***
     Withdraw a passed amount. Returns a results object with details of how the cash withdrawl is structured, and the remaining balance in the float.
 
@@ -68,7 +78,8 @@
         $scope.reset();
 
         // push a message to the UI
-        $scope.$parent.message = { type: 'sucsess', message: 'Sucsessful Transaction' };
+        // $scope.$parent.message = { type: 'sucsess', message: 'Sucsessful Transaction' };
+        $scope.sendMessage( { type: 'sucsess', message: 'Sucsessful Transaction' } );
 
         return t;
       }
@@ -82,7 +93,7 @@
         $scope.withdraw( $scope.amount );
       } catch ( e ) {
         // if it doesn't work then deal with it
-        $scope.$parent.message = { type: 'warning', message: e.message };
+        $scope.sendMessage( { type: 'warning', message: e.message } );
       }
     };
 

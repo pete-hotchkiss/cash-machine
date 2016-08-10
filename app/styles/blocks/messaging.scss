@@ -10,7 +10,7 @@
   &--status-bar {
     left: 0;
     position: absolute;
-    top: 63px;
+    top: 0;
     right: 0;
     z-index: 1;
   }
@@ -41,6 +41,10 @@
     color: #842332;
     border-left: 4px solid #842332;
     opacity: 1;
+  }
+
+  &.visible {
+    top: 63px;
   }
 
   &--sucsess {
