@@ -138,7 +138,7 @@
       };
     }
 
-  console.log('CHarting is: ', charting);
+  // console.log('CHarting is: ', charting);
 
   angular.module('cashPointApp')
     .controller('charting', ['$scope', 'Global', charting]);

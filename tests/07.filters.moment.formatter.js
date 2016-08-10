@@ -1,6 +1,6 @@
-var myApp = angular.module('myApp', []);
-myApp.filter('formateddate', formateddate);
 
+var myApp = angular.module('myApp', []);
+myApp.filter('formateddate', formateddate.map );
 
 describe('Filters', function () {
     beforeEach(function () {

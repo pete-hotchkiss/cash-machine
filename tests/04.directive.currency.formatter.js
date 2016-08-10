@@ -1,4 +1,4 @@
-// console.log("asC", asCurrency.map);
+/* global angular */
 
 (function (angular) {
     var app = angular.module('app', []);

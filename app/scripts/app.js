@@ -51,12 +51,12 @@ angular.module('cashPointApp', ['cfp.hotkeys', 'toggle-switch', 'ui.router', 'ch
   //= .controller('transactions', ['$scope', transactions])
   //= .controller('charting', ['$scope', 'Global', charting])
   //=.directive('ngAlias', ngAlias )
-  // .directive('asCurrency', asCurrency )
-  // .directive('transactionSummary', function() {
-    // return {
-      // templateUrl: 'templates/transaction-summary.html'
-    // };
-  // })
+  //= .directive('asCurrency', asCurrency )
+  .directive('transactionSummary', function() {
+    return {
+      templateUrl: 'templates/transaction-summary.html'
+    };
+  });
   // .filter('currency', currency )
   // .filter('formateddate', formateddate );
 })();
